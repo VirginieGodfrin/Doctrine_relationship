@@ -15,7 +15,7 @@ class AlbumController extends Controller
 		$em = $this->getDoctrine()->getManager();
 
 		$albums = $em->getRepository('AppBundle:Album')
-			->findAll();
+			->findAllPublish();
 
 		dump($albums);
 
