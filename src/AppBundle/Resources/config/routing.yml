@@ -1,0 +1,14 @@
+Album: 
+    path:    /album
+    defaults:
+        _controller: AppBundle:Album:index
+
+Album_add: 
+    path:    /album/add
+    defaults:
+        _controller: AppBundle:Album:add
+
+Album_view: 
+    path:    /album/view/{name}
+    defaults:
+        _controller: AppBundle:Album:view

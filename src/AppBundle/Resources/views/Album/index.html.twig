@@ -1,0 +1,37 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block album %}
+
+	<table>
+		<thead>
+			<tr> 
+				<th>Album</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for al in album %}
+
+				<tr>
+					<td>Name</td>
+					<td>Description</td>
+					<td>Ispublish</td>
+					<td>Date de mise à jour</td>
+				</tr>
+
+				<tr>
+					<td>{{al.name}}</td>
+					<td>{{al.description}}</td>
+					<td>{{al.ispublish}}</td>
+					<td>{{al.updatedAt|date('Y-m-d')}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		
+	</table>
+
+	
+
+{% endblock %}
+
+
+

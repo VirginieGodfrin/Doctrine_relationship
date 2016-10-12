@@ -124,5 +124,9 @@ class Album
     {
         return $this->isPublish;
     }
+
+    public function getUpdatedAt(){
+        return new \DateTime('-'.rand(0,100).'day');
+    }
 }
 
