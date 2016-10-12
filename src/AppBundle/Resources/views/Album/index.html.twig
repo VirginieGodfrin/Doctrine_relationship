@@ -9,7 +9,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for al in album %}
+			{% for al in albums %}
 
 				<tr>
 					<td>Name</td>
@@ -19,7 +19,10 @@
 				</tr>
 
 				<tr>
-					<td>{{al.name}}</td>
+					<td>
+						<a href="{{path('Album_view',{'name': al.name}) }}">{{al.name}}</a>
+						
+					</td>
 					<td>{{al.description}}</td>
 					<td>{{al.ispublish}}</td>
 					<td>{{al.updatedAt|date('Y-m-d')}}</td>

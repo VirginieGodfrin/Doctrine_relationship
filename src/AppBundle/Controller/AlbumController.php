@@ -14,18 +14,29 @@ class AlbumController extends Controller
 
 		$em = $this->getDoctrine()->getManager();
 
-		$album = $em->getRepository('AppBundle:Album')
+		$albums = $em->getRepository('AppBundle:Album')
 			->findAll();
 
-		dump($album);
+		dump($albums);
 
 		return $this->render('AppBundle:Album:Index.html.twig', array(
-        	'album' => $album )
+        	'albums' => $albums )
         );
 	}
 
 	public function viewAction($name){
-		return new Response('Album view!');
+
+		$em = $this->getDoctrine()->getManager();
+		$album = $em->getRepository('AppBundle:Album')
+				->findOneBy(['name' => $name]);
+
+		if(!$album){
+			throw $this->createNotFoundException('pas d\'album trouvé');
+		}
+		
+		return $this->render('AppBundle:Album:oneAlbum.html.twig', array(
+        	'album' => $album )
+        );
 	}
 
 	public function addAction(){
