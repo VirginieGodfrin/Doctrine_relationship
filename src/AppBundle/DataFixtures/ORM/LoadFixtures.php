@@ -31,7 +31,7 @@ class LoadFixtures implements FixtureInterface
         $pouf=[
             'Electro',
             'Pop',
-            'Punk'
+            'Punk',
         ];
         $key = array_rand($pouf);
         return $pouf[$key];

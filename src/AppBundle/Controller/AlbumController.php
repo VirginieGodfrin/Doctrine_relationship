@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Album;
+use AppBundle\Entity\Band;
+use AppBundle\Entity\Category;
 
 class AlbumController extends Controller
 {
@@ -41,17 +43,35 @@ class AlbumController extends Controller
 
 	public function addAction(){
 
-		$album = new Album();
+		/*$album = new Album();
 
 		$album->setName('test1');
 		$album->setDescription('blabla1');
+		$album->setIsPublish(1);*/
+
+		$band = new Band();
+		$band->setName('Californie');
+
+		$category = new category();
+		$category->setName('Rock');
+		$category->setBand($band);
+
+		$album = new Album();
+
+		$album->setName('One day');
+		$album->setDescription('beautifuul song !');
 		$album->setIsPublish(1);
+		$album->setBand($band);
 
 
 		$em = $this->getDoctrine()->getManager();
+		$em->persist($band);
+		$em->persist($category);
 		$em->persist($album);
 		$em->flush();
 
+		dump($band);
+		dump($category);
 		dump($album);
 
 		return new Response('<html><body>Album OK!</body></html>');

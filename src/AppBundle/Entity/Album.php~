@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\Band;
 
 /**
  * Album
@@ -45,7 +44,6 @@ class Album
 
     /**
      * @ORM\ManyToOne(targetEntity="Band")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $band;
 
@@ -135,28 +133,5 @@ class Album
     public function getUpdatedAt(){
         return new \DateTime('-'.rand(0,100).'day');
     }
-
-    /**
-     * Set band
-     *
-     * @param \AppBundle\Entity\Band $band
-     *
-     * @return Album
-     */
-    public function setBand(Band $band)
-    {
-        $this->band = $band;
-
-        return $this;
-    }
-
-    /**
-     * Get band
-     *
-     * @return \AppBundle\Entity\Band
-     */
-    public function getBand()
-    {
-        return $this->band;
-    }
 }
+

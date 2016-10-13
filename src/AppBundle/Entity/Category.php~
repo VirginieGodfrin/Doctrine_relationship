@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\Band;
 
 /**
  * Category
@@ -32,7 +31,6 @@ class Category
 
     /**
      * @ORM\ManyToOne(targetEntity="Band")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $band;
 
@@ -69,28 +67,5 @@ class Category
     {
         return $this->name;
     }
-
-    /**
-     * Set band
-     *
-     * @param \AppBundle\Entity\Band $band
-     *
-     * @return Category
-     */
-    public function setBand(Band $band)
-    {
-        $this->band = $band;
-
-        return $this;
-    }
-
-    /**
-     * Get band
-     *
-     * @return \AppBundle\Entity\Band
-     */
-    public function getBand()
-    {
-        return $this->band;
-    }
 }
+

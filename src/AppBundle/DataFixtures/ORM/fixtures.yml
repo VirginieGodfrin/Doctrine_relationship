@@ -1,13 +1,17 @@
+AppBundle\Entity\Band:
+    band_{1..3}:
+        name: <jobTitle()>
+AppBundle\Entity\Category:
+    category_{1..3}:
+        name: <category()>
+        band: '@band_*'
 AppBundle\Entity\Album:
     album_{1..10}:
         name: <name()>
         description: <text(20)>
         isPublish : <boolean(75)>
+        band: '@band_*'
 
-AppBundle\Entity\Band:
-    band_{1..3}:
-        name: <jobTitle()>
 
-AppBundle\Entity\Category:
-    category_{1..3}:
-        name: <category()>
+
+
