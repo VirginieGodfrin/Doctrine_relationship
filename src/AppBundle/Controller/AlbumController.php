@@ -26,7 +26,10 @@ class AlbumController extends Controller
         );
 	}
 
-	public function viewAction($name){
+	public function viewAction(Album $album){
+
+		dump($album);
+		$name = $album->getName();
 
 		$em = $this->getDoctrine()->getManager();
 		$album = $em->getRepository('AppBundle:Album')
@@ -39,6 +42,7 @@ class AlbumController extends Controller
 		return $this->render('AppBundle:Album:oneAlbum.html.twig', array(
         	'album' => $album )
         );
+		return new Response('<html><body>Album view OK!</body></html>');
 	}
 
 	public function addAction(){
