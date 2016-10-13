@@ -28,6 +28,15 @@ class Band
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="band")
+     */
+
+    private $categories;
+
+    public function __construct(){
+        $this->categories = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -61,6 +70,10 @@ class Band
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getCategories(){
+        return $this->categories;    
     }
 }
 

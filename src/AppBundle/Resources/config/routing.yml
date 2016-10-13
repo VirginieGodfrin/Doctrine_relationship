@@ -12,3 +12,13 @@ Album_view:
     path:    /album/view/{name}
     defaults:
         _controller: AppBundle:Album:view
+
+Album_view_band: 
+    path:    /album/band/{name}
+    defaults:
+        _controller: AppBundle:Album:viewBand
+
+Album_view_categ: 
+    path:    /album/categ
+    defaults:
+        _controller: AppBundle:Album:viewCateg

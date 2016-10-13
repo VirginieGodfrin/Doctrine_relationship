@@ -45,13 +45,32 @@ class AlbumController extends Controller
 		return new Response('<html><body>Album view OK!</body></html>');
 	}
 
+	public function viewBandAction(Band $band){
+
+		/*$nameBand = $band->getName();
+		dump($nameBand);
+		$category= [];*/
+
+		foreach ($band->getCategories() as $catego){
+			dump($catego);
+		}
+				
+		return new Response('<html><body>band OK! </body></html>');
+	}
+
+	public function viewCategAction(){
+		
+		$em = $this->getDoctrine()->getManager();
+
+		$categ = $em->getRepository('AppBundle:Category')
+			->findAll();
+		dump($categ);		
+		return $this->render('AppBundle:Album:categBand.html.twig', array(
+        	'categ' => $categ )
+        );
+	}
+
 	public function addAction(){
-
-		/*$album = new Album();
-
-		$album->setName('test1');
-		$album->setDescription('blabla1');
-		$album->setIsPublish(1);*/
 
 		$band = new Band();
 		$band->setName('Californie');

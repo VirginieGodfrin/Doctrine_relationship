@@ -1,0 +1,12 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block categBand %}
+
+	{% for ca in categ %}
+		<ul>
+			<li>catégorie: {{ca.name}}</li>
+			<li> group : {{ca.band.name}}</li>
+		</ul>
+	{% endfor %}
+
+	{% endblock %}

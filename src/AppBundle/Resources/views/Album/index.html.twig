@@ -16,16 +16,23 @@
 					<td>Description</td>
 					<td>Ispublish</td>
 					<td>Date de mise à jour</td>
+					<td>groupe</td>
 				</tr>
 
 				<tr>
 					<td>
 						<a href="{{path('Album_view',{'name': al.name}) }}">{{al.name}}</a>
-						
 					</td>
 					<td>{{al.description}}</td>
 					<td>{{al.ispublish}}</td>
 					<td>{{al.updatedAt|date('Y-m-d')}}</td>
+					<td>
+						<a href="{{path('Album_view_band',{'name': al.band.name}) }}">{{al.band.name}}</a>
+					</td>
+
+					<td>
+						<a href="{{path('Album_view_categ',{'name': al.band.name}) }}"> categories de {{al.band.name}}</a>
+					</td>
 				</tr>
 			{% endfor %}
 		</tbody>
