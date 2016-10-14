@@ -6,16 +6,11 @@
 
 {{ dump(bandCateg) }}
 
-
-	{% for bc in bandCateg %}
-
 		<ul>
 			<li>{{bandCateg.id}}</li>
 			<li>{{bandCateg.name}}</li>
 			<li>{{bandCateg.band.name}}</li>
 		</ul>
-		
-		
-	{% endfor %}
+	
 
 	{% endblock %}

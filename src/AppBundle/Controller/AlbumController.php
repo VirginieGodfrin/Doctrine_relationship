@@ -60,15 +60,15 @@ class AlbumController extends Controller
 			
 		} 
 
-		/*$data = [
-			'bandCateg'=>$bandCateg
-		];
-
-		return new JsonResponse($data);*/
-
-
+		/*
+			$data = [
+				'bandCateg'=>$bandCateg
+			];
+			return new JsonResponse($data);
+		*/
 
 		/*$bandCateg = $band->getCategories();*/
+
 		dump($bandCateg);
 
 		return $this->render('AppBundle:Album:bandCateg.html.twig', array(
@@ -79,15 +79,17 @@ class AlbumController extends Controller
 		/*return new Response('<html><body>band OK! </body></html>');*/
 	}
 
-	public function viewCategViaBandAction(){
+	public function viewCategViaBandAction($name){
+
+		
 		
 		$em = $this->getDoctrine()->getManager();
 
-		$categ = $em->getRepository('AppBundle:Category')
-			->findAll();
-		dump($categ);		
+		$categBand = $em->getRepository('AppBundle:Band')
+			->findOneByName($name);
+		dump($categBand);
 		return $this->render('AppBundle:Album:categBand.html.twig', array(
-        	'categ' => $categ )
+        	'categBand' => $categBand )
         );
 	}
 

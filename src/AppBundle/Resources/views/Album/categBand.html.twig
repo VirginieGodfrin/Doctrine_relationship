@@ -2,11 +2,20 @@
 
 {% block categBand %}
 
-	{% for ca in categ %}
-		<ul>
-			<li>catégorie: {{ca.name}}</li>
-			<li> group : {{ca.band.name}}</li>
-		</ul>
-	{% endfor %}
+{{ dump(categBand) }}
 
-	{% endblock %}
+		
+			<ul>
+				<li>band: {{categBand.name}}</li>
+				
+				{% for c in categBand.categories %}
+					
+					<ul>
+						<li> {{c.name}} </li>
+					</ul>
+				{% endfor %}
+				
+			</ul>
+		
+
+{% endblock %}
