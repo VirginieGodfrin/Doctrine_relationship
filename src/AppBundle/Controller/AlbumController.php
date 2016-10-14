@@ -81,8 +81,6 @@ class AlbumController extends Controller
 
 	public function viewCategViaBandAction($name){
 
-		
-		
 		$em = $this->getDoctrine()->getManager();
 
 		$categBand = $em->getRepository('AppBundle:Band')
