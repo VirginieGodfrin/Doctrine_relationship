@@ -16,9 +16,9 @@ Album_view:
 Album_view_band: 
     path:    /album/band/{name}
     defaults:
-        _controller: AppBundle:Album:viewBand
+        _controller: AppBundle:Album:viewBandViaCateg
 
 Album_view_categ: 
     path:    /album/categ
     defaults:
-        _controller: AppBundle:Album:viewCateg
+        _controller: AppBundle:Album:viewCategViaBand

@@ -72,6 +72,10 @@ class Band
         return $this->name;
     }
 
+    /**
+     * @return ArrayCollection\Categories[]
+     *
+     */
     public function getCategories(){
         return $this->categories;    
     }

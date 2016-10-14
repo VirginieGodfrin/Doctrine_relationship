@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use AppBundle\Entity\Album;
 use AppBundle\Entity\Band;
@@ -45,20 +46,40 @@ class AlbumController extends Controller
 		return new Response('<html><body>Album view OK!</body></html>');
 	}
 
-	public function viewBandAction(Band $band){
+	public function viewBandViaCategAction(Band $band){
 
-		/*$nameBand = $band->getName();
-		dump($nameBand);
-		$category= [];*/
+		$bandCateg=[];
 
-		foreach ($band->getCategories() as $catego){
-			dump($catego);
-		}
+		foreach ($band->getCategories() as $bandCateg){
+			/*dump($bandCateg);*/
+			$bandCateg=[
+				'id'=>$bandCateg->getId(),
+				'name'=>$bandCateg->getName(),
+				'band'=>$bandCateg->getBand()
+			];
+			
+		} 
+
+		/*$data = [
+			'bandCateg'=>$bandCateg
+		];
+
+		return new JsonResponse($data);*/
+
+
+
+		/*$bandCateg = $band->getCategories();*/
+		dump($bandCateg);
+
+		return $this->render('AppBundle:Album:bandCateg.html.twig', array(
+        	'bandCateg' => $bandCateg )
+        );
+
 				
-		return new Response('<html><body>band OK! </body></html>');
+		/*return new Response('<html><body>band OK! </body></html>');*/
 	}
 
-	public function viewCategAction(){
+	public function viewCategViaBandAction(){
 		
 		$em = $this->getDoctrine()->getManager();
 
