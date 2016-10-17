@@ -3,9 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use AppBundle\Entity\Tags;
-use \AppBundle\Entity\Category;
 
 /**
  * Band
@@ -38,8 +35,7 @@ class Band
     private $categories;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="bands", cascade={"persist"})
-     * @ORM\joinTable(name="band_tags")
+     * @ORM\ManyToMany(targetEntity="tags")
      */
     private $tags;
 
@@ -97,7 +93,7 @@ class Band
      *
      * @return Band
      */
-    public function addCategory(Category $category)
+    public function addCategory(\AppBundle\Entity\Category $category)
     {
         $this->categories[] = $category;
 
@@ -109,42 +105,8 @@ class Band
      *
      * @param \AppBundle\Entity\Category $category
      */
-    public function removeCategory(Category $category)
+    public function removeCategory(\AppBundle\Entity\Category $category)
     {
         $this->categories->removeElement($category);
-    }
-
-    /**
-     * Add tag
-     *
-     * @param \AppBundle\Entity\tags $tag
-     *
-     * @return Band
-     */
-    public function addTags(tags $tags)
-    {
-        $this->tags[] = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Remove tag
-     *
-     * @param \AppBundle\Entity\tags $tag
-     */
-    public function removeTags(tags $tags)
-    {
-        $this->tags->removeElement($tag);
-    }
-
-    /**
-     * Get tags
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTags()
-    {
-        return $this->tags;
     }
 }

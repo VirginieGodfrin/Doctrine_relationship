@@ -3,15 +3,18 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 use AppBundle\Entity\Band;
 
+
 /**
- * Category
+ * Tags
  *
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="tags")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TagsRepository")
  */
-class Category
+class Tags
 {
     /**
      * @var int
@@ -29,12 +32,12 @@ class Category
      */
     private $name;
 
-
     /**
-     * @ORM\ManyToOne(targetEntity="Band", inversedBy="categories", cascade="persist")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity="Band", mappedBy="tags")
+     * 
      */
-    private $band;
+    private $bands;
+
 
     /**
      * Get id
@@ -51,7 +54,7 @@ class Category
      *
      * @param string $name
      *
-     * @return Category
+     * @return Tags
      */
     public function setName($name)
     {
@@ -69,28 +72,39 @@ class Category
     {
         return $this->name;
     }
+    
 
     /**
-     * Set band
+     * Add band
      *
      * @param \AppBundle\Entity\Band $band
      *
-     * @return Category
+     * @return Tags
      */
-    public function setBand(Band $band)
+    public function addBand(Band $band)
     {
-        $this->band = $band;
+        $this->bands[] = $band;
 
         return $this;
     }
 
     /**
-     * Get band
+     * Remove band
      *
-     * @return \AppBundle\Entity\Band
+     * @param \AppBundle\Entity\Band $band
      */
-    public function getBand()
+    public function removeBand(Band $band)
     {
-        return $this->band;
+        $this->bands->removeElement($band);
+    }
+
+    /**
+     * Get bands
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBands()
+    {
+        return $this->bands;
     }
 }

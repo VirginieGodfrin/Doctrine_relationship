@@ -3,15 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\Band;
+
 
 /**
- * Category
+ * Tags
  *
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="tags")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TagsRepository")
  */
-class Category
+class Tags
 {
     /**
      * @var int
@@ -29,12 +29,12 @@ class Category
      */
     private $name;
 
-
     /**
-     * @ORM\ManyToOne(targetEntity="Band", inversedBy="categories", cascade="persist")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity="Band", mappedBy="tags")
+     * 
      */
-    private $band;
+    private $bands;
+
 
     /**
      * Get id
@@ -51,7 +51,7 @@ class Category
      *
      * @param string $name
      *
-     * @return Category
+     * @return Tags
      */
     public function setName($name)
     {
@@ -69,28 +69,5 @@ class Category
     {
         return $this->name;
     }
-
-    /**
-     * Set band
-     *
-     * @param \AppBundle\Entity\Band $band
-     *
-     * @return Category
-     */
-    public function setBand(Band $band)
-    {
-        $this->band = $band;
-
-        return $this;
-    }
-
-    /**
-     * Get band
-     *
-     * @return \AppBundle\Entity\Band
-     */
-    public function getBand()
-    {
-        return $this->band;
-    }
 }
+

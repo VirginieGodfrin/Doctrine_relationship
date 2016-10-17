@@ -1,0 +1,28 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block bandCateg %}
+
+{{ dump(tagsBand) }}
+
+	<ul>
+		{% for b in tagsBand %}
+			<li>bands: {{b.name}}</li>
+			<ul>catégorie associées :
+				{% for c in b.categories %}
+					<li> {{c.name}} </li> 
+				{% endfor %}
+			</ul>
+
+			<ul>Tags associées :
+				{% for t in b.tags %}
+					<li> {{t.name}} </li> 
+				{% endfor %}
+			</ul>
+		{% endfor %}
+		
+	</ul>
+	
+
+		<hr>
+
+	{% endblock %}

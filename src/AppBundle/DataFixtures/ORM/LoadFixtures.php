@@ -36,4 +36,22 @@ class LoadFixtures implements FixtureInterface
         $key = array_rand($pouf);
         return $pouf[$key];
     }
+
+    public function tags(){
+        
+        $pouf=[
+            'Super',
+            'Sympa',
+            'Mauvais',
+            'De bon gout',
+            'A chier',
+            'Turbo génial',
+            'Bien',
+            'Extra',
+            'Nulle'
+
+        ];
+        $key = array_rand($pouf);
+        return $pouf[$key];
+    }
 }

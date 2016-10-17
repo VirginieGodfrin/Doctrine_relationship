@@ -1,0 +1,25 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block categBand %}
+
+{{ dump(categTagsBand) }}
+
+			<ul>
+				<li>band: {{categTagsBand.name}}</li>
+
+				<ul> categories:
+					{% for c in categTagsBand.categories %}
+						<li> {{c.name}} </li>
+					{% endfor %}
+				</ul>
+
+				<ol> tags:
+					{% for t in categTagsBand.tags %}
+						<li> {{t.name}} </li>
+					{% endfor %}
+				</ol>
+				
+			</ul>
+		
+
+{% endblock %}

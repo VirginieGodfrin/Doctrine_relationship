@@ -1,6 +1,10 @@
+AppBundle\Entity\Tags:
+    tags_{1..9}:
+        name: <tags()>
 AppBundle\Entity\Band:
     band_{1..3}:
         name: <jobTitle()>
+        tags: '@tags_*'
 AppBundle\Entity\Category:
     category_{1..3}:
         name: <category()>

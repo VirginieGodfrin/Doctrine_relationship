@@ -1,0 +1,49 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block bandCateg %}
+
+		
+
+{{ dump(bandCateg) }}
+
+{{ dump(bandTags) }}
+
+		<ul> bands via categories : 
+			<li>category id : {{bandCateg.id}}</li>
+			<li>category name: {{bandCateg.name}}</li>
+			<li>band associé : {{bandCateg.band.name}}</li>
+			<ul>catégories associées :
+				{% for c in bandCateg.band.categories %}
+					<li>{{c.name}}</li>
+				{% endfor %}
+			</ul>
+			<ul>tags associées :
+				{% for t in bandCateg.band.tags %}
+					<li>{{t.name}}</li>
+					<li>{{t.id}}</li>
+				<a href="{{path('Album_view_band_tags',{'id': t.id}) }}"> 
+					tags de {{t.name}}</a>
+					
+				{% endfor %}
+			</ul>
+		</ul>
+
+		<hr>
+
+		<ul> bands via tags 
+			<li>tags id : {{bandTags.id}}</li>
+			<li>tags name : {{bandTags.name}}</li>
+				<ul> bands associés :
+					{% for b in bandTags.band %}
+						<li>{{b.name}}</li>
+					{% endfor %}
+				<ul>
+		</ul>
+
+		
+
+
+		
+	
+
+	{% endblock %}

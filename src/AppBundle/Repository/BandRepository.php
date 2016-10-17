@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class BandRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findBandViaTag($id){
+		$qb = $this->createQueryBuilder('b')
+				->leftJoin('b.tags', 't')
+				->andWhere('t.id = :id')
+				->setParameter('id', $id)
+				->getQuery()
+				->execute();
+
+				return $qb;
+	}
 }
