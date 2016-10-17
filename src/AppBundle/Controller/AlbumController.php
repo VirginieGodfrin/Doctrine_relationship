@@ -102,58 +102,39 @@ class AlbumController extends Controller
         	 )
         );
 
-				
-		/*return new Response('<html><body> viewTagsViaBands OK! </body></html>');*/
 	}
 
 
 
 	public function addAction(){
 
-		$tags1 = new tags();
-		$tags1->setName('super super');
-
-		$tags2 = new tags();
-		$tags2->setName('bad bad');
+		$tags = new tags();
+		$tags->setName('super super');
 		
-		$band1 = new Band();
-		$band1->setName('MoiMoi');
-		$band1->addTags($tags1,$tags2);
-
-		$band2 = new Band();
-		$band2->setName('YoupieYoupie');
-		$band2->addTags($tags1,$tags2);
+		$band = new Band();
+		$band->setName('MoiMoi');
+		$band->addTags($tags);
 
 		$category = new category();
 		$category->setName('classic');
-		$category->setBand($band1, $band2);
+		$category->setBand($band);
 
-		$album1 = new Album();
-		$album1->setName('Castagnette');
-		$album1->setDescription('sympa et tout joli !');
-		$album1->setIsPublish(1);
-		$album1->setBand($band1);
-
-		$album2 = new Album();
-		$album2->setName('Piano');
-		$album2->setDescription('Magnifique qu\'on y a rien vu!');
-		$album2->setIsPublish(1);
-		$album2->setBand($band2);
+		$album = new Album();
+		$album->setName('Castagnette');
+		$album->setDescription('sympa et tout joli !');
+		$album->setIsPublish(1);
+		$album->setBand($band);
 
 
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($category);
-		$em->persist($album1);
-		$em->persist($album2);
+		$em->persist($album);
 		$em->flush();
 
-		dump($band1);
-		dump($band2);
+		dump($band);
 		dump($category);
-		dump($tags1);
-		dump($tags2);
-		dump($album1);
-		dump($album2);
+		dump($tags);
+		dump($album);
 
 		return new Response('<html><body>Album OK!</body></html>');
 
