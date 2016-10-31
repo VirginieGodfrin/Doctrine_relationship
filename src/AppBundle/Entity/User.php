@@ -3,18 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use AppBundle\Entity\Tags;
-use AppBundle\Entity\Category;
 use AppBundle\Entity\Event;
 
 /**
- * Band
+ * User
  *
- * @ORM\Table(name="band")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\BandRepository")
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class Band
+class User
 {
     /**
      * @var int
@@ -33,27 +30,30 @@ class Band
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="band")
+     * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=255)
      */
-
-    private $categories;
+    private $firstname;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="bands", cascade={"persist"})
-     * @ORM\joinTable(name="band_tags")
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
      */
-    private $tags;
+    private $email;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Event", mappedBy="bands")
+     * @ORM\ManyToMany(targetEntity="Event", inversedBy="users")
      */
     private $events;
 
+
     public function __construct(){
-        $this->categories = new ArrayCollection();
-        $this->tags = new ArrayCollection();
+
         $this->events = new ArrayCollection();
     }
+
 
     /**
      * Get id
@@ -70,7 +70,7 @@ class Band
      *
      * @param string $name
      *
-     * @return Band
+     * @return User
      */
     public function setName($name)
     {
@@ -90,78 +90,59 @@ class Band
     }
 
     /**
-     * @return ArrayCollection\Categories[]
+     * Set firstname
      *
+     * @param string $firstname
+     *
+     * @return User
      */
-    public function getCategories(){
-        return $this->categories;    
-    }
-
-    /**
-     * Add category
-     *
-     * @param \AppBundle\Entity\Category $category
-     *
-     * @return Band
-     */
-    public function addCategory(Category $category)
+    public function setFirstname($firstname)
     {
-        $this->categories[] = $category;
+        $this->firstname = $firstname;
 
         return $this;
     }
 
     /**
-     * Remove category
+     * Get firstname
      *
-     * @param \AppBundle\Entity\Category $category
+     * @return string
      */
-    public function removeCategory(Category $category)
+    public function getFirstname()
     {
-        $this->categories->removeElement($category);
+        return $this->firstname;
     }
 
     /**
-     * Add tag
+     * Set email
      *
-     * @param \AppBundle\Entity\tags $tag
+     * @param string $email
      *
-     * @return Band
+     * @return User
      */
-    public function addTags(tags $tags)
+    public function setEmail($email)
     {
-        $this->tags[] = $tags;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Remove tag
+     * Get email
      *
-     * @param \AppBundle\Entity\tags $tag
+     * @return string
      */
-    public function removeTags(tags $tags)
+    public function getEmail()
     {
-        $this->tags->removeElement($tag);
+        return $this->email;
     }
 
-    /**
-     * Get tags
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    
     /**
      * Add event
      *
      * @param \AppBundle\Entity\Event $event
      *
-     * @return Band
+     * @return User
      */
     public function addEvent(Event $event)
     {
