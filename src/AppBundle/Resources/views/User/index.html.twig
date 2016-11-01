@@ -1,0 +1,20 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block oneUser %}
+
+	<h2>One User</h2>
+	<ul>
+		<li>Name : {{user.name}}</li>
+		<li>Firstname : {{user.firstname}} </li>
+		<li>Email : {{user.email}} </li>
+		<li>Evènement:
+			<ul> 
+				<li>ID : {{userEvent.id}}</li>
+				<li>Nom: {{userEvent.name}}</li>
+				<li>Date & Time : {{userEvent.datetime|date('m-d-Y H:i:s a')}}
+			</ul>
+		</li>
+	</ul>
+	<hr>
+
+{% endblock %}

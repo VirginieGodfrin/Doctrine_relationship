@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\ConcertHall;
 
 /**
  * Ville
@@ -31,7 +30,6 @@ class Ville
 
     /**
      * @ORM\ManyToOne(targetEntity="ConcertHall")
-     * @ORM\JoinColumn(name="concert_hall_id", referencedColumnName="id")
      */
     private $concertHall;
 
@@ -69,28 +67,5 @@ class Ville
     {
         return $this->name;
     }
-
-    /**
-     * Set concertHall
-     *
-     * @param \AppBundle\Entity\ConcertHall $concertHall
-     *
-     * @return Ville
-     */
-    public function setConcertHall(ConcertHall $concertHall)
-    {
-        $this->concertHall = $concertHall;
-
-        return $this;
-    }
-
-    /**
-     * Get concertHall
-     *
-     * @return \AppBundle\Entity\ConcertHall
-     */
-    public function getConcertHall()
-    {
-        return $this->concertHall;
-    }
 }
+

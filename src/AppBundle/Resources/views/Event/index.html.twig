@@ -1,0 +1,32 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block event %}
+
+	<h2>Events</h2>
+	{% for e in events %}
+	<ul>
+		<li>Name : {{e.name}}</li>
+		<li>Description : {{e.description}} </li>
+		<li>Bands : </li>
+			<ul>
+			 	{% for b in e.bands %}
+					<li>{{b.name}}</li>
+				{% endfor %}
+			</ul>
+		<li>Salle de concert : {{e.concertHall.name}}</li>
+		<li>Participants : 
+			<ol>
+				{% for u in e.users %}
+					<li><a href="{{path('user_view',{'name': u.name}) }}">{{u.name}}</li>
+			</a> 
+				{% endfor %}
+			</ol>
+		</li>
+		<li>Date : {{e.stratTime|date('m-d-Y')}}</li>
+		<li>Début : {{e.stratTime|date('H:i:s a')}}</li>
+		<li>Fin : {{e.endTime|date('m-d-Y H:i:s a')}}</li>
+	</ul>
+	<hr>
+	{% endfor %}
+
+{% endblock %}

@@ -56,16 +56,18 @@ class Event
 
     /**
      * @ORM\ManyToMany(targetEntity="Band", inversedBy="events")
+     * @ORM\joinTable(name="event_band"))
      */
     private $bands;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ConcertHall", inversedBy="events")
+     * @ORM\ManyToOne(targetEntity="ConcertHall")
      */
     private $concertHall;
 
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="events")
+     * @ORM\joinTable(name="user_event"))
      */
     private $users;
 
@@ -193,6 +195,7 @@ class Event
      */
     public function addBand(Band $band)
     {
+        $band->addBand($this);
         $this->bands[] = $band;
 
         return $this;
@@ -241,6 +244,7 @@ class Event
     {
         return $this->concertHall;
     }
+
 
     /**
      * Add user

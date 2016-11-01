@@ -1,0 +1,29 @@
+Album: 
+    path:    /album
+    defaults:
+        _controller: AppBundle:Album:index
+
+Album_add: 
+    path:    /album/add
+    defaults:
+        _controller: AppBundle:Album:add
+
+Album_view: 
+    path:    /album/view/{name}
+    defaults:
+        _controller: AppBundle:Album:view
+
+Album_view_band: 
+    path:    /album/band/{name}
+    defaults:
+        _controller: AppBundle:Album:viewBandViaCategAndTags
+
+Album_view_categ: 
+    path:    /album/categ/{name}
+    defaults:
+        _controller: AppBundle:Album:viewCategAndTagsViaBand
+
+Album_view_band_tags:
+    path:    /album/btags/{id}
+    defaults:
+        _controller: AppBundle:Album:viewTagsViaBands

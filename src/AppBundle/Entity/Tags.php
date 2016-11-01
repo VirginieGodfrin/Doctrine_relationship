@@ -38,6 +38,10 @@ class Tags
      */
     private $bands;
 
+    public function __construct(){
+        $this->bands = new ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -75,9 +79,9 @@ class Tags
     
 
     /**
-     * Add band
+     * Add bands
      *
-     * @param \AppBundle\Entity\Band $band
+     * @param \AppBundle\Entity\Band $bands
      *
      * @return Tags
      */
@@ -89,9 +93,9 @@ class Tags
     }
 
     /**
-     * Remove band
+     * Remove bands
      *
-     * @param \AppBundle\Entity\Band $band
+     * @param \AppBundle\Entity\Band $bands
      */
     public function removeBand(Band $band)
     {
@@ -101,10 +105,11 @@ class Tags
     /**
      * Get bands
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection\Band[]
      */
     public function getBands()
     {
         return $this->bands;
     }
+
 }

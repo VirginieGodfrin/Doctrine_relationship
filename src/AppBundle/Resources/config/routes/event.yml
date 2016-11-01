@@ -1,0 +1,4 @@
+Event: 
+    path:    /event
+    defaults:
+        _controller: AppBundle:Event:index

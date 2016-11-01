@@ -1,0 +1,4 @@
+user_view: 
+    path:    /user/{name}
+    defaults:
+        _controller: AppBundle:User:viewuser

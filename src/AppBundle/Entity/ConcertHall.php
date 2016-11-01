@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\Event;
 
 /**
  * ConcertHall
@@ -69,8 +71,7 @@ class ConcertHall
     private $events;
 
     public function __construct(){
-
-        $this->evnents = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     
@@ -237,7 +238,7 @@ class ConcertHall
      *
      * @return ConcertHall
      */
-    public function addEvent(\AppBundle\Entity\Event $event)
+    public function addEvent(Event $event)
     {
         $this->events[] = $event;
 
@@ -249,7 +250,7 @@ class ConcertHall
      *
      * @param \AppBundle\Entity\Event $event
      */
-    public function removeEvent(\AppBundle\Entity\Event $event)
+    public function removeEvent(Event $event)
     {
         $this->events->removeElement($event);
     }

@@ -39,7 +39,7 @@ class Band
     private $categories;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="bands", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="bands")
      * @ORM\joinTable(name="band_tags")
      */
     private $tags;
@@ -50,8 +50,8 @@ class Band
     private $events;
 
     public function __construct(){
-        $this->categories = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->categories = new ArrayCollection();
         $this->events = new ArrayCollection();
     }
 
@@ -122,25 +122,26 @@ class Band
     }
 
     /**
-     * Add tag
+     * Add tags
      *
-     * @param \AppBundle\Entity\tags $tag
+     * @param \AppBundle\Entity\tags $tags
      *
      * @return Band
      */
-    public function addTags(tags $tags)
+    public function addTags(Tags $tags)
     {
+        $this->addBand($this);
         $this->tags[] = $tags;
 
         return $this;
     }
 
     /**
-     * Remove tag
+     * Remove tags
      *
-     * @param \AppBundle\Entity\tags $tag
+     * @param \AppBundle\Entity\tags $tags
      */
-    public function removeTags(tags $tags)
+    public function removeTags(Tags $tags)
     {
         $this->tags->removeElement($tag);
     }
@@ -148,7 +149,7 @@ class Band
     /**
      * Get tags
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection\Tags[]
      */
     public function getTags()
     {

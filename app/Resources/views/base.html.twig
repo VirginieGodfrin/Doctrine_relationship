@@ -7,6 +7,13 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <header>
+            <ul>
+                <li><a href="{{path('Album') }}"> Albums </a></li>
+                <li><a href="{{path('Event') }}"> Events </a></li>
+            </ul>
+            
+        </header>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

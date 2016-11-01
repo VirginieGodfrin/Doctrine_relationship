@@ -15,7 +15,28 @@ AppBundle\Entity\Album:
         description: <text(20)>
         isPublish : <boolean(75)>
         band: '@band_*'
-
-
-
-
+AppBundle\Entity\ConcertHall:
+    concertHall_{1..10}:
+        name: <company()>
+        homeNumber: <buildingNumber()>
+        phoneNumber: <phoneNumber()>
+        email: <freeEmail()>
+        website: <url()>
+AppBundle\Entity\Ville:
+    ville_{1..10}:
+        name: <city()>
+        concertHall: '@concertHall_*'
+AppBundle\Entity\Event:
+    event_{1..10}:
+        name: <numerify('event')>
+        description: <text(100)>
+        stratTime: <dateTimeThisMonth('now')>
+        endTime: <dateTimeThisMonth('now')>
+        bands: '@band_*'
+        concertHall: '@concertHall_*'
+AppBundle\Entity\User:
+    user_{1..10}:
+        name: <lastName()>
+        firstname: <firstName()>
+        email: <freeEmail()>
+        events: '@event_*'

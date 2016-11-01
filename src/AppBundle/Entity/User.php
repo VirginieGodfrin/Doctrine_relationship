@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\Event;
 
 /**
@@ -45,6 +46,7 @@ class User
 
     /**
      * @ORM\ManyToMany(targetEntity="Event", inversedBy="users")
+     * @ORM\joinTable(name="user_event"))
      */
     private $events;
 
