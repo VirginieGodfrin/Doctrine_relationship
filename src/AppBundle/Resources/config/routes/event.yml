@@ -2,3 +2,8 @@ Event:
     path:    /event
     defaults:
         _controller: AppBundle:Event:index
+
+Event_ville:
+    path:    /event/ville/{name}
+    defaults:
+        _controller: AppBundle:Event:villeEvent

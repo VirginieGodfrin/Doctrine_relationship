@@ -13,12 +13,17 @@
 					<li>{{b.name}}</li>
 				{% endfor %}
 			</ul>
-		<li>Salle de concert : {{e.concertHall.name}}</li>
+		<li>
+			<a href="{{path('Event_ville',{'name': e.concertHall.name}) }}">{{e.concertHall.name}}</a>
+		</li>
+
 		<li>Participants : 
 			<ol>
 				{% for u in e.users %}
-					<li><a href="{{path('user_view',{'name': u.name}) }}">{{u.name}}</li>
-			</a> 
+					<li>
+						<a href="{{path('user_view',{'name': u.name}) }}">{{u.name}}</a>
+					</li>
+					 
 				{% endfor %}
 			</ol>
 		</li>

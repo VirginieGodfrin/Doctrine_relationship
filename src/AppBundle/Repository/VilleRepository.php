@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class VilleRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findVilleByConcertHall($id){
+		return $this->createQueryBuilder('v')
+					->innerJoin('v.concertHall', 'ch')
+					->addSelect('ch')
+					->andWhere('ch.id = :id')
+					->setParameter('id', $id)
+					->getQuery()
+					->execute();
+	}
 }

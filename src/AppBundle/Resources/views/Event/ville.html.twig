@@ -1,0 +1,18 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block ville %}
+
+		{% for v in ville%}
+		<ul>
+			<li>Ville : {{v.name}}</li>
+			<li>La salle de concert : {{v.concertHall.name}} / {{v.concertHall.id}}</li>
+			<ul> Evènement :
+				{% for e in v.concertHall.events %}
+					<li>{{e.name}}</li>
+				{% endfor %}
+			</ul>
+			
+		</ul>
+		{% endfor %}
+	
+{% endblock %}

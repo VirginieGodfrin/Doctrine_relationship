@@ -18,9 +18,26 @@ class EventController extends Controller
 			->findAll();
 
 		dump($events);
-		
+
 		return $this->render('AppBundle:Event:Index.html.twig', array(
         	'events' => $events )
+        );
+	}
+
+	public function villeEventAction($name){
+
+		$em = $this->getDoctrine()->getManager();
+		$concertHall = $em->getRepository('AppBundle:ConcertHall')
+			->findOneByName($name);
+
+		$id = $concertHall->getId();	
+
+		$ville = $em->getRepository('AppBundle:Ville')
+			->findVilleByConcertHall($id);
+			
+		return $this->render('AppBundle:Event:ville.html.twig', array(
+        	'ville' => $ville
+        	 )
         );
 	}
 }
