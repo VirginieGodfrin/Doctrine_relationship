@@ -31,7 +31,7 @@ class Category
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Band", inversedBy="categories", cascade="persist")
+     * @ORM\ManyToOne(targetEntity="Band", inversedBy="categories")
      * @ORM\JoinColumn(nullable=false)
      */
     private $band;

@@ -1,0 +1,28 @@
+Admin: 
+    path:    /admin
+    defaults:
+        _controller: AppBundle:Admin\Admin:index
+
+Event_add:
+    path:    /event/add
+    defaults:
+        _controller: AppBundle:Admin\Event:add
+
+Event_edit:
+    path:    /event/{id}/edit
+    defaults:
+        _controller: AppBundle:Admin\Event:edit
+
+Band_new:
+    path:    /band/new
+    defaults:
+        _controller: AppBundle:Admin\Band:new
+Band_add:
+    path:    /band/add
+    defaults:
+        _controller: AppBundle:Admin\Band:add
+
+Band_edit:
+    path:    /band/{id}/edit
+    defaults:
+        _controller: AppBundle:Admin\Band:edit

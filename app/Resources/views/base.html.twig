@@ -4,17 +4,20 @@
         <meta charset="UTF-8" />
         <title>{% block title %} Album {% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         <header>
             <ul>
+                <li><a href="{{path('Home') }}"> Home </a></li>
                 <li><a href="{{path('Album') }}"> Albums </a></li>
                 <li><a href="{{path('Event') }}"> Events </a></li>
+                <li><a href="{{path('Admin') }}"> Admin </a></li>
             </ul>
-            
+            <hr>
         </header>
+
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+            
     </body>
 </html>

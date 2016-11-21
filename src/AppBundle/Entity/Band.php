@@ -104,12 +104,12 @@ class Band
      *
      * @return Band
      */
-    public function addCategory(Category $category)
+    /*public function addCategory(Category $category)
     {
         $this->categories[] = $category;
 
         return $this;
-    }
+    }*/
 
     /**
      * Remove category
@@ -130,7 +130,7 @@ class Band
      */
     public function addTags(Tags $tags)
     {
-        $this->addBand($this);
+        /*$this->addBand($this);*/
         $this->tags[] = $tags;
 
         return $this;

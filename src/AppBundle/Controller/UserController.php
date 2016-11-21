@@ -17,6 +17,7 @@ class UserController extends Controller
 		$name = $user->getName();
 
 		$em = $this->getDoctrine()->getManager();
+		
 		$user = $em->getRepository('AppBundle:User')
 				->findOneBy(['name' => $name]);
 

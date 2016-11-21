@@ -1,4 +1,9 @@
 
+Home:
+    path:    /home
+    defaults:
+        _controller: AppBundle:Home:index
+
 Album:
     resource: "@AppBundle/Resources/config/routes/album.yml"
     prefix: /   
@@ -9,4 +14,8 @@ Event:
 
 User:
     resource: "@AppBundle/Resources/config/routes/user.yml"
+    prefix: /
+
+Admin:
+    resource: "@AppBundle/Resources/config/routes/admin.yml"
     prefix: /

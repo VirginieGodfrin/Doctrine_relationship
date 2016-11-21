@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 use AppBundle\Entity\Album;
 use AppBundle\Entity\Band;
@@ -21,8 +20,6 @@ class AlbumController extends Controller
 		$albums = $em->getRepository('AppBundle:Album')
 			->findAllPublish();
 
-		dump($albums);
-
 		return $this->render('AppBundle:Album:Index.html.twig', array(
         	'albums' => $albums )
         );
@@ -30,10 +27,10 @@ class AlbumController extends Controller
 
 	public function viewAction(Album $album){
 
-		dump($album);
 		$name = $album->getName();
 
 		$em = $this->getDoctrine()->getManager();
+
 		$album = $em->getRepository('AppBundle:Album')
 				->findOneBy(['name' => $name]);
 
@@ -50,7 +47,7 @@ class AlbumController extends Controller
 	public function viewBandViaCategAndTagsAction(Band $band){
 		$bandCateg=[];
 		foreach ($band->getCategories() as $bandCateg){
-			/*dump($bandCateg);*/
+
 			$bandCateg=[
 				'id'=>$bandCateg->getId(),
 				'name'=>$bandCateg->getName(),
@@ -61,14 +58,14 @@ class AlbumController extends Controller
 
 		$bandTags=[];
 		foreach ($band->getTags() as $bandTags){
-			/*dump($bandTags);*/
+
 			$bandTags=[
 				'id'=>$bandTags->getId(),
 				'name'=>$bandTags->getName(),
 				'band'=>$bandTags->getBands()
 			];
 		}
-		dump($bandCateg);
+
 		return $this->render('AppBundle:Album:bandCategTags.html.twig', array(
         	'bandCateg' => $bandCateg,
         	'bandTags'=>$bandTags,
@@ -82,7 +79,7 @@ class AlbumController extends Controller
 
 		$categTagsBand = $em->getRepository('AppBundle:Band')
 			->findOneByName($name);
-		dump($categTagsBand);
+
 		return $this->render('AppBundle:Album:categTagsBand.html.twig', array(
         	'categTagsBand' => $categTagsBand )
         );
@@ -95,16 +92,12 @@ class AlbumController extends Controller
 		$tagsBand = $em->getRepository('AppBundle:Band')
 			->findBandViaTag($id);
 
-		dump($tagsBand);
-
 		return $this->render('AppBundle:Album:tagsBand.html.twig', array(
         	'tagsBand'=>$tagsBand
         	 )
         );
 
 	}
-
-
 
 	public function addAction(){
 

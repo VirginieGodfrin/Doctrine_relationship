@@ -1,0 +1,34 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block admin %}
+	<ul>Bands
+		<div><a href="{{ path('Band_new') }}">NEW</a></div>
+		{% for b in band %}
+			<li>{{b.id}} // {{b.name}}
+				<ol>
+					<li><a href="{{ path('Band_edit',{'id':b.id}) }}">edit</a></li>
+				</ol>
+            </li>
+		{% endfor %}
+
+	</ul>
+	<hr>
+	<ul>Events 
+		<div><a href="{{ path('Event_add') }}">add</a></div>
+
+		{% for e in event %}
+			<li>{{e.id}} // {{e.name}}
+				<ol>
+					<li><a href="{{ path('Event_edit',{'id':e.id}) }}">edit</a></li>
+				</ol>
+            </li>
+		{% endfor %}
+	</ul>
+	<hr>
+	<ul>Album
+		{% for a in album %}
+			<li>{{a.id}} // {{a.name}}</li>
+		{% endfor %}
+	</ul>
+
+	{% endblock %}
