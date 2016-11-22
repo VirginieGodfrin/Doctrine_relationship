@@ -10,8 +10,7 @@ use AppBundle\Entity\Band;
 use AppBundle\Entity\Tags;
 use AppBundle\Entity\Album;
 
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use AppBundle\Form\AlbumType;
 
 
 class AlbumController extends Controller
@@ -46,11 +45,7 @@ class AlbumController extends Controller
 
 		$album = new Album();
 
-		$albumForm = $this->createFormBuilder($album)
-			->add('name', TextType::class)
-			->add('description', TextType::class)
-			->add('save', SubmitType::class, array('label' => 'Create Album'))
-			->getForm();
+		$albumForm = $this->createForm(AlbumType::class);
 
 		if($request->isMethod('POST')){
 
