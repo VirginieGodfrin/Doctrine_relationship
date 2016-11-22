@@ -99,37 +99,5 @@ class AlbumController extends Controller
 
 	}
 
-	public function addAction(){
-
-		$tags = new tags();
-		$tags->setName('super super');
-		
-		$band = new Band();
-		$band->setName('MoiMoi');
-		$band->addTags($tags);
-
-		$category = new category();
-		$category->setName('classic');
-		$category->setBand($band);
-
-		$album = new Album();
-		$album->setName('Castagnette');
-		$album->setDescription('sympa et tout joli !');
-		$album->setIsPublish(1);
-		$album->setBand($band);
-
-
-		$em = $this->getDoctrine()->getManager();
-		$em->persist($category);
-		$em->persist($album);
-		$em->flush();
-
-		dump($band);
-		dump($category);
-		dump($tags);
-		dump($album);
-
-		return new Response('<html><body>Album OK!</body></html>');
-
-	}
+	
 }

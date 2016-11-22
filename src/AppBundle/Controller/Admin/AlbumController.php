@@ -10,6 +10,9 @@ use AppBundle\Entity\Band;
 use AppBundle\Entity\Tags;
 use AppBundle\Entity\Album;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 class AlbumController extends Controller
 {
@@ -39,9 +42,35 @@ class AlbumController extends Controller
 
 	}
 
-	public function editAction(band $band){
-           
-		return $this->render('AppBundle:Admin:bandEdit.html.twig');
+	public function addAction(Request $request){
+
+		$album = new Album();
+
+		$albumForm = $this->createFormBuilder($album)
+			->add('name', TextType::class)
+			->add('description', TextType::class)
+			->add('save', SubmitType::class, array('label' => 'Create Album'))
+			->getForm();
+
+		if($request->isMethod('POST')){
+
+			$albumForm->handleRequest($request);
+
+	    	if ($albumForm->isSubmitted() && $albumForm->isValid()) {
+
+	        	$album = $albumForm->getData();
+
+	        	$em = $this->getDoctrine()->getManager(); 
+	        	$em->persist($album);
+				$em->flush();
+
+	        	return $this->redirectToRoute('Admin');
+	    	}
+		}
+		
+		return $this->render('AppBundle:Admin:albumAdd.html.twig',[
+				'albumForm' => $albumForm->createView()
+			]);
 
 	}
 }

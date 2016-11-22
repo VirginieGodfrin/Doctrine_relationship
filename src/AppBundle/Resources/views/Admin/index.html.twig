@@ -26,7 +26,11 @@
 	</ul>
 	<hr>
 	<ul>Album
-		<div><a href="{{ path('Album_new') }}">NEW</a></div>
+		<div>
+			<span><a href="{{ path('Album_new') }}">NEW</a></span>
+			<span><a href="{{ path('Album_add') }}">ADD</a></span>
+		</div>
+		
 		{% for a in album %}
 			<li>{{a.id}} // {{a.name}}
 				<ol>
