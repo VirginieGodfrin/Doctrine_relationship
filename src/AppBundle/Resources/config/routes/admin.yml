@@ -31,3 +31,17 @@ Band_edit:
     path:    /band/{id}/edit
     defaults:
         _controller: AppBundle:Admin\Band:edit
+
+Album_new:
+    path:    /album/new
+    defaults:
+        _controller: AppBundle:Admin\Album:new
+Album_add:
+    path:    /album/add
+    defaults:
+        _controller: AppBundle:Admin\Album:add
+
+Album_edit:
+    path:    /album/{id}/edit
+    defaults:
+        _controller: AppBundle:Admin\Album:edit
