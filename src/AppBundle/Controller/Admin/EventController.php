@@ -6,12 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use AppBundle\Entity\Tags;
-use AppBundle\Entity\Band;
-use AppBundle\Entity\Category;
-use AppBundle\Entity\ConcertHall;
-use AppBundle\Entity\Event;
-use AppBundle\Entity\User;
+use AppBundle\Form\EventType;
+
+
 
 
 class EventController extends Controller
@@ -64,6 +61,34 @@ class EventController extends Controller
 		return new Response('<html><body>New Event ok!</body></html>');
 
 	}
+
+	public function addAction(Request $request){
+
+		$eventForm = $this->createForm(EventType::class);
+
+		if($request->isMethod('POST')){
+
+			$eventForm->handleRequest($request);
+
+	    	if ($eventForm->isSubmitted() && $eventForm->isValid()) {
+
+	        	$event = $eventForm->getData();
+
+	        	$em = $this->getDoctrine()->getManager(); 
+	        	$em->persist($event);
+				$em->flush();
+
+	        	return $this->redirectToRoute('Admin');
+	    	}
+		}
+		
+		return $this->render('AppBundle:Admin:eventAdd.html.twig',[
+				'eventForm' => $eventForm->createView()
+			]);
+
+	}
+
+
 	public function editAction(){
            
 		return $this->render('AppBundle:Admin:eventEdit.html.twig');

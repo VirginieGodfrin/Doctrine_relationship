@@ -43,8 +43,6 @@ class AlbumController extends Controller
 
 	public function addAction(Request $request){
 
-		$album = new Album();
-
 		$albumForm = $this->createForm(AlbumType::class);
 
 		if($request->isMethod('POST')){

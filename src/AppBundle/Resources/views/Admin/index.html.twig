@@ -14,7 +14,11 @@
 	</ul>
 	<hr>
 	<ul>Events 
-		<div><a href="{{ path('Event_new') }}">NEW</a></div>
+		<div>
+			<span><a href="{{ path('Event_new') }}">NEW</a></span> // 
+			<span><a href="{{ path('Event_add') }}">ADD</a></span>
+		</div>
+
 
 		{% for e in event %}
 			<li>{{e.id}} // {{e.name}}
@@ -27,7 +31,7 @@
 	<hr>
 	<ul>Album
 		<div>
-			<span><a href="{{ path('Album_new') }}">NEW</a></span>
+			<span><a href="{{ path('Album_new') }}">NEW</a></span> //
 			<span><a href="{{ path('Album_add') }}">ADD</a></span>
 		</div>
 		

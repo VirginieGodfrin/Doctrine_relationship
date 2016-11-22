@@ -1,0 +1,11 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block eventAdd %}
+
+	<h3>Event add </h3>
+
+	{{ form_start(eventForm) }}
+	{{ form_widget(eventForm) }}
+	{{ form_end(eventForm) }}
+
+	{% endblock %}

@@ -24,7 +24,6 @@ class AlbumType extends AbstractType
                 array('required' => false))
             ->add('band')
             ->add('save', SubmitType::class);
-
             ;
     }
     
