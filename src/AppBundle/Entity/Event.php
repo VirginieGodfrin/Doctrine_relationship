@@ -195,7 +195,7 @@ class Event
      */
     public function addBand(Band $band)
     {
-        $band->addBand($this);
+        /*$band->addBand($this);*/
         $this->bands[] = $band;
 
         return $this;

@@ -238,12 +238,12 @@ class ConcertHall
      *
      * @return ConcertHall
      */
-    public function addEvent(Event $event)
+    /*public function addEvent(Event $event)
     {
         $this->events[] = $event;
 
         return $this;
-    }
+    }*/
 
     /**
      * Remove event

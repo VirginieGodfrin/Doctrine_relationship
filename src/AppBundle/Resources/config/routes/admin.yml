@@ -3,6 +3,11 @@ Admin:
     defaults:
         _controller: AppBundle:Admin\Admin:index
 
+Event_new:
+    path:    /event/new
+    defaults:
+        _controller: AppBundle:Admin\Event:new
+
 Event_add:
     path:    /event/add
     defaults:
