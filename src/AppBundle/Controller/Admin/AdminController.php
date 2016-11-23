@@ -15,6 +15,10 @@ class AdminController extends Controller
             ->getRepository('AppBundle:Band')
             ->findAll();
 
+        $categ = $this->getDoctrine()
+            ->getRepository('AppBundle:Category')
+            ->findAll();
+
         $event = $this->getDoctrine()
             ->getRepository('AppBundle:Event')
             ->findAll();
@@ -25,6 +29,7 @@ class AdminController extends Controller
 
 		return $this->render('AppBundle:Admin:Index.html.twig',[
 				'band' => $band,
+				'categ' => $categ,
 				'event' => $event,
 				'album' => $album
 			]);

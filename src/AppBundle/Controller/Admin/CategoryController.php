@@ -6,28 +6,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use AppBundle\Form\BandType;
-
-use AppBundle\Entity\Tags;
-use AppBundle\Entity\Band;
 use AppBundle\Entity\Category;
 
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use AppBundle\Form\CategoryType;
 
 
-
-class BandController extends Controller
+class CategoryController extends Controller
 {
 	
 	public function newAction(){
 
-		$tags = new Tags();
-		$tags->setName("testtag1");
-
 		$band = new Band();
 		$band->setName("testband1");
-		$band->addtags($tags);
 
 		$categ = new Category();
 		$categ->setName("categtest1");
@@ -35,18 +25,16 @@ class BandController extends Controller
 
 
 		$em = $this->getDoctrine()->getManager();
-		$em->persist($tags);
         $em->persist($band);
         $em->persist($categ);
         $em->flush();
            
-		return new Response('<html><body>New Band ok!</body></html>');
+		return new Response('<html><body>New categ ok!</body></html>');
 
 	}
 
 	public function addAction(Request $request){
 
-		$band = new Band();
 		$categ = new Category();
 
 		/*$bandForm = $this->createFormBuilder($band)
@@ -56,24 +44,24 @@ class BandController extends Controller
         ->add('save', SubmitType::class, array('label' => 'Create Band'))
         ->getForm();*/
 
-		$bandForm = $this->createForm(BandType::class, $band);
+		$categForm = $this->createForm(CategoryType::class, $categ);
 
-			$bandForm->handleRequest($request);
+			$categForm->handleRequest($request);
 
-	    	if ($bandForm->isSubmitted() && $bandForm->isValid()) {
+	    	if ($categForm->isSubmitted() && $categForm->isValid()) {
 
-	        	$band = $bandForm->getData();
-	        	dump($band);
+	        	$categ = $categForm->getData();
+	        	dump($categ);
 	        	$em = $this->getDoctrine()->getManager(); 
-	        	$em->persist($band);
+	        	$em->persist($categ);
 				$em->flush();
 
 	        	return $this->redirectToRoute('Admin');
 	    	}
 		
 		
-		return $this->render('AppBundle:Admin:bandAdd.html.twig',[
-				'bandForm' => $bandForm->createView()
+		return $this->render('AppBundle:Admin:categAdd.html.twig',[
+				'categForm' => $categForm->createView()
 			]);
 
 	}

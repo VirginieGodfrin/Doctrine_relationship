@@ -66,6 +66,9 @@ class AlbumController extends Controller
 			];
 		}
 
+		dump($bandTags);
+		dump($bandCateg);
+
 		return $this->render('AppBundle:Album:bandCategTags.html.twig', array(
         	'bandCateg' => $bandCateg,
         	'bandTags'=>$bandTags,

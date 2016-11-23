@@ -6,14 +6,16 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use AppBundle\Entity\Tags;
+use AppBundle\Entity\Band;
+use AppBundle\Entity\Category;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use AppBundle\Form\TagsType;
-use AppBundle\Entity\Tags;
-use AppBundle\Entity\Event;
+
+
+use AppBundle\Form\CategoryType;
 
 
 
@@ -26,7 +28,15 @@ class BandType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('save', SubmitType::class)
+            ->add('tags', EntityType::class,[
+                    'class' => 'AppBundle:Tags',
+                    'choice_label' => 'name',
+                    'multiple' => true,
+                    'expanded' => true
+                ])
+            ->add('categories')
+
+            ->add('save', SubmitType::class, array('label' => 'Create Band'))
         ;
     }
     

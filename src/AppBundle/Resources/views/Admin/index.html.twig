@@ -16,6 +16,21 @@
 
 	</ul>
 	<hr>
+	<ul>Category
+		<div>
+			<span><a href="{{ path('Categ_new') }}">NEW</a></span> //
+			<span><a href="{{ path('Categ_add') }}">ADD</a></span>
+		</div>
+		{% for c in categ %}
+			<li>{{c.id}} // {{c.name}}
+				<ol>
+					<li><a href="{{ path('Categ_edit',{'id':c.id}) }}">edit</a></li>
+				</ol>
+            </li>
+		{% endfor %}
+
+	</ul>
+	<hr>
 	<ul>Events 
 		<div>
 			<span><a href="{{ path('Event_new') }}">NEW</a></span> // 

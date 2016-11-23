@@ -108,12 +108,12 @@ class Band
      *
      * @return Band
      */
-    /*public function addCategory(Category $category)
+    public function addCategory(Category $category = null)
     {
         $this->categories[] = $category;
 
         return $this;
-    }*/
+    }
 
     /**
      * Remove category

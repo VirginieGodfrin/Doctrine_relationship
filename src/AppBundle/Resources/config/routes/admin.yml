@@ -32,6 +32,20 @@ Band_edit:
     defaults:
         _controller: AppBundle:Admin\Band:edit
 
+Categ_new:
+    path:    /categ/new
+    defaults:
+        _controller: AppBundle:Admin\Category:new
+Categ_add:
+    path:    /categ/add
+    defaults:
+        _controller: AppBundle:Admin\Category:add
+
+Categ_edit:
+    path:    /categ/{id}/edit
+    defaults:
+        _controller: AppBundle:Admin\Category:edit
+
 Album_new:
     path:    /album/new
     defaults:

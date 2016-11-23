@@ -69,10 +69,12 @@ class Category
     {
         return $this->name;
     }
-    
+
     public function __toString(){
         return $this->getName();
     }
+    
+    
 
     /**
      * Set band
