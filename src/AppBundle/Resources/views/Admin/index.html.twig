@@ -2,7 +2,10 @@
 
 {% block admin %}
 	<ul>Bands
-		<div><a href="{{ path('Band_new') }}">NEW</a></div>
+		<div>
+			<span><a href="{{ path('Band_new') }}">NEW</a></span> //
+			<span><a href="{{ path('Band_add') }}">ADD</a></span>
+		</div>
 		{% for b in band %}
 			<li>{{b.id}} // {{b.name}}
 				<ol>

@@ -1,0 +1,11 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block bandAdd %}
+
+	<h3>Band add</h3>
+
+	{{ form_start(bandForm) }}
+	{{ form_widget(bandForm) }}
+	{{ form_end(bandForm) }}
+
+	{% endblock %}

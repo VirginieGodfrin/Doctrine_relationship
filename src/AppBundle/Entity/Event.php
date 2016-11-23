@@ -114,6 +114,10 @@ class Event
         return $this->name;
     }
 
+    public function __toString(){
+        return $this->getName();
+    }
+
     /**
      * Set description
      *

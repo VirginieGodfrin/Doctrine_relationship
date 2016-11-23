@@ -12,7 +12,6 @@ use AppBundle\Entity\Album;
 
 use AppBundle\Form\AlbumType;
 
-
 class AlbumController extends Controller
 {
 	

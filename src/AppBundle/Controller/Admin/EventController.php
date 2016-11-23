@@ -8,7 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Form\EventType;
 
-
+use AppBundle\Entity\Tags;
+use AppBundle\Entity\Band;
+use AppBundle\Entity\Category;
+use AppBundle\Entity\ConcertHall;
+use AppBundle\Entity\Event;
+use AppBundle\Entity\User;
 
 
 class EventController extends Controller

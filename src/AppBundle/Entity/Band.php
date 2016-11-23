@@ -39,7 +39,7 @@ class Band
     private $categories;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="bands")
+     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="bands", cascade={"persist"})
      * @ORM\joinTable(name="band_tags")
      */
     private $tags;
@@ -134,7 +134,7 @@ class Band
      */
     public function addTags(Tags $tags)
     {
-        /*$this->addBand($this);*/
+        
         $this->tags[] = $tags;
 
         return $this;
@@ -159,6 +159,7 @@ class Band
     {
         return $this->tags;
     }
+    
 
     
     /**
