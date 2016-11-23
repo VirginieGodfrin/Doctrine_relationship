@@ -7,7 +7,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Form\BandType;
+use AppBundle\Entity\Tags;
+use AppBundle\Entity\Band;
+use AppBundle\Entity\Category;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
 
@@ -40,9 +45,19 @@ class BandController extends Controller
 
 	public function addAction(Request $request){
 
-		$bandForm = $this->createForm(BandType::class);
+		$band= new Band();
 
-		if($request->isMethod('POST')){
+
+		$bandForm = $this->createFormBuilder($band)
+        ->add('name', TextType::class)
+        ->add('tags')
+        ->add('categories')
+        ->add('save', SubmitType::class, array('label' => 'Create Band'))
+        ->getForm();
+
+		/*$bandForm = $this->createForm(BandType::class);*/
+
+		
 
 			$bandForm->handleRequest($request);
 
@@ -56,7 +71,7 @@ class BandController extends Controller
 
 	        	return $this->redirectToRoute('Admin');
 	    	}
-		}
+		
 		
 		return $this->render('AppBundle:Admin:bandAdd.html.twig',[
 				'bandForm' => $bandForm->createView()

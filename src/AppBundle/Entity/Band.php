@@ -159,7 +159,6 @@ class Band
     {
         return $this->tags;
     }
-    
 
     
     /**
