@@ -10,10 +10,22 @@ use AppBundle\Entity\Band;
 use AppBundle\Entity\Tags;
 use AppBundle\Entity\Album;
 
+
 use AppBundle\Form\AlbumType;
 
 class AlbumController extends Controller
 {
+	public function indexAction(){
+
+        $album = $this->getDoctrine()
+            ->getRepository('AppBundle:Album')
+            ->findAll();
+
+		return $this->render('AppBundle:Admin\Album:albumIndex.html.twig',[
+				'album' => $album
+			]);
+
+	}
 	
 	public function newAction(){
 
@@ -56,13 +68,65 @@ class AlbumController extends Controller
 	        	$em->persist($album);
 				$em->flush();
 
-	        	return $this->redirectToRoute('Admin');
+	        	return $this->redirectToRoute('Album_index');
 	    	}
 		}
 		
-		return $this->render('AppBundle:Admin:albumAdd.html.twig',[
+		return $this->render('AppBundle:Admin\Album:albumAdd.html.twig',[
 				'albumForm' => $albumForm->createView()
 			]);
 
 	}
+
+	public function editAction(Request $request, Album $album){
+
+        $albumForm = $this->createForm(AlbumType::class, $album);
+
+        $albumForm->handleRequest($request);
+
+        if($albumForm->isSubmitted() && $albumForm->isValid()){
+
+            $em = $this->getDoctrine()->getManager();
+
+            $album = $albumForm->getData();
+
+            $em->flush();
+
+            return $this->redirectToRoute('Album_index');
+        }
+
+        return $this->render('AppBundle:Admin\Album:albumEdit.html.twig',[
+            'albumForm'=>$albumForm->createView()
+            ]
+        );
+    }
+
+    public function deleteAction(Request $request, Album $album){
+
+    	$em = $this->getDoctrine()->getManager();
+
+    	$albumId = $album->getId(); 
+
+    	$album = $em->getRepository('AppBundle:Album')
+    			->find($albumId);
+
+        $albumForm = $this->get('form.factory')->create();
+
+        $albumForm->handleRequest($request);
+
+        if($albumForm->isSubmitted()){
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($album);
+            $em->flush();
+
+            return $this->redirectToRoute('Album_index');
+        }
+
+		return $this->render('AppBundle:Admin\Album:albumDelete.html.twig',[
+        	'album' => $album,
+            'albumForm' => $albumForm->createView()
+            ]
+        );
+    }
 }

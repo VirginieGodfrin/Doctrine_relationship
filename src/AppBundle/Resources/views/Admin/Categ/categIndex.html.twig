@@ -1,0 +1,20 @@
+{% extends "AppBundle:Admin:adminLayout.html.twig" %}
+
+{% block categIndex %}
+<ul><h3>Category</h3>
+		<div>
+			<span><a href="{{ path('Categ_new') }}">NEW</a></span> //
+			<span><a href="{{ path('Categ_add') }}">ADD</a></span>
+		</div>
+		<div>----------------------------------------------------</div>
+		{% for c in categ %}
+			<li>{{c.id}} // {{c.name}} // {{c.band.name}}
+				<div>
+					<span><a href="{{ path('Categ_edit',{'id':c.id}) }}">EDIT</a></span> //
+					<span><a href="{{ path('Categ_delete',{'id':c.id}) }}">DELETE</a></span>
+				</div>
+            </li>
+		{% endfor %}
+	</ul>
+{% endblock %}
+

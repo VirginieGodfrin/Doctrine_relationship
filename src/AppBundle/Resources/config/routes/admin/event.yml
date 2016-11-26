@@ -1,0 +1,24 @@
+Event_index:
+    path:    /event_admin
+    defaults:
+        _controller: AppBundle:Admin\Event:index
+
+Event_new:
+    path:    /event/new
+    defaults:
+        _controller: AppBundle:Admin\Event:new
+
+Event_add:
+    path:    /event/add
+    defaults:
+        _controller: AppBundle:Admin\Event:add
+
+Event_edit:
+    path:    /event/{id}/edit
+    defaults:
+        _controller: AppBundle:Admin\Event:edit
+
+Event_delete:
+    path:    /event/{id}/delete
+    defaults:
+        _controller: AppBundle:Admin\Event:delete

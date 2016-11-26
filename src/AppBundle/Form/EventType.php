@@ -16,6 +16,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class EventType extends AbstractType
 {
@@ -27,17 +29,23 @@ class EventType extends AbstractType
         $builder
         ->add('name', TextType::class)
         ->add('description', TextType::class)
-        ->add('stratTime', TimeType::class,[
-                'input'  => 'datetime',
-                'widget' => 'choice',
+
+        ->add('stratTime', DateTimeType::class,[
+                'placeholder' => 'Select a value' 
             ])
-        ->add('endTime', TimeType::class,[
-                'input'  => 'datetime',
-                'widget' => 'choice',
+        ->add('endTime', DateTimeType::class,[
+                'placeholder' => [
+                     'month' => 'Month', 'day' => 'Day', 'year' => 'Year',
+                    'hour' => 'Hour', 'minute' => 'Minute',
+                    ] 
             ])
-        ->add('bands')
+        ->add('bands',EntityType::class,[
+                    'class' => 'AppBundle:Band',
+                    'choice_label' => 'name',
+                    'multiple' => true,
+                    'expanded' => true
+                ])
         ->add('concertHall')
-        ->add('users')
         ->add('save', SubmitType::class);       
         ;
     }

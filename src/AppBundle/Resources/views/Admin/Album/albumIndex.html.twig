@@ -1,0 +1,22 @@
+{% extends "AppBundle:Admin:adminLayout.html.twig" %}
+
+{% block albumIndex %}
+
+	<ul><h3>Album</h3>
+		<div>
+			<span><a href="{{ path('Album_new') }}">NEW</a></span> //
+			<span><a href="{{ path('Album_add') }}">ADD</a></span>
+		</div>
+		<div>----------------------------------------------------</div>
+		{% for a in album %}
+			<li>{{a.id}} // {{a.name}} // {{a.band.name}}</li>
+			<li>	
+				<div>
+					<span><a href="{{ path('Album_edit',{'id':a.id}) }}">EDIT</a></span> // 
+					<span><a href="{{ path('Album_delete',{'id':a.id}) }}">DELETE</a></span>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+
+	{% endblock %}

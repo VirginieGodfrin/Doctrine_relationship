@@ -1,0 +1,23 @@
+Band_index:
+    path:    /band_admin
+    defaults:
+        _controller: AppBundle:Admin\Band:index
+Band_new:
+    path:    /band/new
+    defaults:
+        _controller: AppBundle:Admin\Band:new
+
+Band_add:
+    path:    /band/add
+    defaults:
+        _controller: AppBundle:Admin\Band:add
+
+Band_edit:
+    path:    /band/{id}/edit
+    defaults:
+        _controller: AppBundle:Admin\Band:edit
+
+Band_delete:
+    path:    /band/{id}/delete
+    defaults:
+        _controller: AppBundle:Admin\Band:delete

@@ -1,0 +1,22 @@
+Categ_index:
+    path:    /categ_admin
+    defaults:
+        _controller: AppBundle:Admin\Category:index
+Categ_new:
+    path:    /categ/new
+    defaults:
+        _controller: AppBundle:Admin\Category:new
+Categ_add:
+    path:    /categ/add
+    defaults:
+        _controller: AppBundle:Admin\Category:add
+
+Categ_edit:
+    path:    /categ/{id}/edit
+    defaults:
+        _controller: AppBundle:Admin\Category:edit
+
+Categ_delete:
+    path:    /categ/{id}/delete
+    defaults:
+        _controller: AppBundle:Admin\Category:delete

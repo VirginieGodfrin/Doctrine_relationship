@@ -1,0 +1,12 @@
+{% extends "AppBundle:Admin:adminLayout.html.twig" %}
+
+{% block categEdit %}
+
+	<h3>Category add</h3>
+	
+	{{ form_start(formCateg) }}
+	{{ form_widget(formCateg) }}
+	{{ form_end(formCateg) }}
+
+	{% endblock %}
+

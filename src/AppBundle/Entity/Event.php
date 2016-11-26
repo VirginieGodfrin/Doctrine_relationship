@@ -55,13 +55,13 @@ class Event
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="Band", inversedBy="events")
+     * @ORM\ManyToMany(targetEntity="Band", inversedBy="events", cascade={"persist"})
      * @ORM\joinTable(name="event_band"))
      */
     private $bands;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ConcertHall")
+     * @ORM\ManyToOne(targetEntity="ConcertHall", inversedBy="events")
      */
     private $concertHall;
 

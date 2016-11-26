@@ -33,7 +33,7 @@ class Band
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="band")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="band",)
      */
 
     private $categories;
@@ -168,7 +168,7 @@ class Band
      *
      * @return Band
      */
-    public function addEvent(Event $event)
+    public function addEvent(Event $event = null)
     {
         $this->events[] = $event;
 

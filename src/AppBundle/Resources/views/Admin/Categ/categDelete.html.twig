@@ -1,0 +1,25 @@
+{% extends "AppBundle:Admin:adminLayout.html.twig" %}
+
+{% block categDelete %}
+
+	<h3>Category delete</h3>
+
+	<ul> supprimer la Categorie: 
+		<li>{{categ.id}}</li>
+		<li>{{categ.name}}</li>
+		<li>{{categ.band.name}}</li>
+	</ul>
+
+	<form action="{{ path('Categ_delete', {'id': categ.id}) }}" method="post">
+
+    <a href="{{ path('Admin') }}"> Retour à l'admin </a> <br>
+
+    <input type="submit" value="Supprimer"/>
+
+    {# Ceci va générer le champ CSRF #}
+
+    {{ form_end(formCateg) }}
+
+  </form>
+
+	{% endblock %}

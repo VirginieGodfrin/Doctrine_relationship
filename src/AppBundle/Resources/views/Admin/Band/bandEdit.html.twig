@@ -1,0 +1,11 @@
+{% extends "AppBundle:Admin:adminLayout.html.twig" %}
+
+{% block bandEdit %}
+
+	<h3>Band Edit </h3>
+
+	{{ form_start(bandForm) }}
+	{{ form_widget(bandForm) }}
+	{{ form_end(bandForm) }}
+
+	{% endblock %}

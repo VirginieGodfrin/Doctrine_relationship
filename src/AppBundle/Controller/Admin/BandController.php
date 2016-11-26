@@ -5,20 +5,30 @@ namespace AppBundle\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\PersistentCollection; 
+
+use Doctrine\Common\Collections\ArrayCollection;   
 
 use AppBundle\Form\BandType;
 
 use AppBundle\Entity\Tags;
 use AppBundle\Entity\Band;
 use AppBundle\Entity\Category;
-
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
-
+use AppBundle\Entity\Event;
 
 class BandController extends Controller
 {
+	public function indexAction(){
+
+		$band = $this->getDoctrine()
+            ->getRepository('AppBundle:Band')
+            ->findAll();
+
+		return $this->render('AppBundle:Admin\Band:bandIndex.html.twig',[
+				'band' => $band,
+			]);
+
+	}
 	
 	public function newAction(){
 
@@ -47,14 +57,6 @@ class BandController extends Controller
 	public function addAction(Request $request){
 
 		$band = new Band();
-		$categ = new Category();
-
-		/*$bandForm = $this->createFormBuilder($band)
-        ->add('name', TextType::class)
-        ->add('tags')
-        ->add('categories')
-        ->add('save', SubmitType::class, array('label' => 'Create Band'))
-        ->getForm();*/
 
 		$bandForm = $this->createForm(BandType::class, $band);
 
@@ -72,15 +74,61 @@ class BandController extends Controller
 	    	}
 		
 		
-		return $this->render('AppBundle:Admin:bandAdd.html.twig',[
+		return $this->render('AppBundle:Admin\Band:bandAdd.html.twig',[
 				'bandForm' => $bandForm->createView()
 			]);
 
 	}
 
-	public function editAction(band $band){
-           
-		return $this->render('AppBundle:Admin:bandEdit.html.twig');
+	public function editAction(Request $request, Band $band){
 
-	}
+        $bandForm = $this->createForm(BandType::class, $band);
+
+        $bandForm->handleRequest($request);
+
+        if($bandForm->isSubmitted() && $bandForm->isValid()){
+
+            $em = $this->getDoctrine()->getManager();
+
+            $band = $bandForm->getData();
+
+            $em->flush();
+
+            return $this->redirectToRoute('Admin');
+        }
+
+        return $this->render('AppBundle:Admin\Band:bandEdit.html.twig',[
+            'bandForm'=>$bandForm->createView()
+            ]
+        );
+    }
+
+    public function deleteAction(Request $request, Band $band){
+
+    	$em = $this->getDoctrine()->getManager();
+
+    	$bandId = $band->getId(); 
+
+    	$band = $em->getRepository('AppBundle:Band')
+    			->find($bandId);
+
+        $bandForm = $this->get('form.factory')->create();
+
+        $bandForm->handleRequest($request);
+
+        if($bandForm->isSubmitted()){
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($band);
+            $em->flush();
+
+            return $this->redirectToRoute('Admin');
+        }
+
+		return $this->render('AppBundle:Admin\Band:bandDelete.html.twig',[
+        	'band' => $band,
+            'bandForm' => $bandForm->createView()
+            ]
+        );
+    }
 }

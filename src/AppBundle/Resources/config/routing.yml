@@ -17,5 +17,5 @@ User:
     prefix: /
 
 Admin:
-    resource: "@AppBundle/Resources/config/routes/admin.yml"
+    resource: "@AppBundle/Resources/config/routes/admin/admin.yml"
     prefix: /

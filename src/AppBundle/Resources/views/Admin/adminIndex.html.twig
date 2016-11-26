@@ -1,0 +1,63 @@
+{% extends "AppBundle:Admin:adminLayout.html.twig" %}
+
+{% block adminIndex %}
+	
+	<ul><h3>Bands</h3>
+		{% for b in band %}
+			<li>{{b.id}} // {{b.name}} 
+				<div> tags: 
+					{% for t in b.tags %}
+						{{t.name}} //
+					{% endfor %}
+				</div>
+				<div> categories: 
+					{% for c in b.categories %}
+						{{c.name}} //
+					{% endfor %}
+				</div>
+				<div> event: 
+					{% for e in b.events %}
+						{{e.name}} //
+					{% endfor %}
+				</div>
+            </li>
+		{% endfor %}
+	</ul>
+
+	<hr>
+
+	<ul><h3>Category</h3>
+		{% for c in categ %}
+			<li>{{c.id}} // {{c.name}} // {{c.band.name}}</li>
+		{% endfor %}
+	</ul>
+
+	<hr>
+
+	<ul><h3>Events</h3> 
+		{% for e in event %}
+			<li>{{e.id}} // {{e.name}} // {{e.concertHall.name}} // {{e.stratTime|date('d-m-Y')}} // 
+				{{e.stratTime|date('H:i:s a')}} // {{e.endTime|date('d-m-Y H:i:s a')}}
+				<div>Bands: 
+					{% for b in e.bands %}
+						{{b.name}} //
+					{% endfor %}
+				</div>
+				<div>Users: 
+					{% for u in e.users %}
+						{{u.name}} //
+					{% endfor %}
+				</div>
+            </li>
+		{% endfor %}
+	</ul>
+
+	<hr>
+
+	<ul><h3>Album</h3>
+		{% for a in album %}
+			<li>{{a.id}} // {{a.name}} // {{a.band.name}}</li>
+		{% endfor %}
+	</ul>
+
+	{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block admin %}
+	<ul>Admin : 
+		<li><a href="{{ path('Event_index') }}">Event</a></li>
+		<li><a href="{{ path('Categ_index') }}">Categories</a></li>
+		<li><a href="{{ path('Band_index') }}">Band</a></li>
+		<li><a href="{{ path('Album_index') }}">Album</a></li>
+	</ul>
+	<hr>
+	{% block adminIndex %}
+		{% endblock %}
+
+	{% block eventIndex %}
+		{% endblock %}
+		
+	{% block eventAdd %}
+		{% endblock %}
+
+	{% block eventEdit %}
+		{% endblock %}
+
+	{% block EventDelete %}
+		{% endblock %}
+
+	{% block albumIndex %}
+		{% endblock %}
+
+	{% block albumAdd %}
+		{% endblock %}
+
+	{% block AlbumEdit %}
+		{% endblock %}
+
+	{% block albumDelete %}
+		{% endblock %}
+
+	{% block bandIndex %}
+		{% endblock %}
+
+	{% block bandEdit %}
+		{% endblock %}
+
+	{% block bandAdd %}
+		{% endblock %}
+
+	{% block bandDelete %}
+		{% endblock %}
+
+	{% block categIndex %}
+		{% endblock %}
+
+	{% block categAdd %}
+		{% endblock %}
+
+	{% block categEdit %}
+		{% endblock %}
+
+	{% block categDelete %}
+		{% endblock %}
+
+{% endblock %}

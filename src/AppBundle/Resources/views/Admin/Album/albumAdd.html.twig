@@ -1,0 +1,11 @@
+{% extends "AppBundle:Admin:adminLayout.html.twig" %}
+
+{% block albumAdd %}
+
+	<h3>Album Add </h3>
+
+	{{ form_start(albumForm) }}
+	{{ form_widget(albumForm) }}
+	{{ form_end(albumForm) }}
+
+	{% endblock %}

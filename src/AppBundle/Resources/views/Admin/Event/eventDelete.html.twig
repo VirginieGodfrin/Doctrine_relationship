@@ -1,0 +1,33 @@
+{% extends "AppBundle:Admin:adminLayout.html.twig" %}
+
+{% block EventDelete %}
+
+	{{dump(event)}}
+
+
+	<h3>Event delete</h3>
+
+	<ul> supprimer la Categorie: 
+		<li>{{event.id}}</li>
+		<li>{{event.name}}</li>
+		<li>{{event.concertHall}}</li>
+		<li> Bands: 
+			{% for b in event.bands %}
+				{{b.name}} //
+			{% endfor %}
+		</li>
+	</ul>
+
+  	<form action="{{ path('Event_delete', {'id': event.id}) }}" method="post">
+
+    <a href="{{ path('Admin') }}"> Retour à l'admin </a> <br>
+
+    <input type="submit" value="Supprimer"/>
+
+    {# Ceci va générer le champ CSRF #}
+
+    {{ form_end(eventForm) }}
+
+  </form>
+
+	{% endblock %}

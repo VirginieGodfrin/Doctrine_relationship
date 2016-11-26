@@ -1,0 +1,20 @@
+Admin: 
+    path:    /admin
+    defaults:
+        _controller: AppBundle:Admin\Admin:index
+
+Album:
+    resource: "@AppBundle/Resources/config/routes/admin/album.yml"
+    prefix: /   
+
+Event:
+    resource: "@AppBundle/Resources/config/routes/admin/event.yml"
+    prefix: /
+
+Categ:
+    resource: "@AppBundle/Resources/config/routes/admin/categ.yml"
+    prefix: /
+
+Band:
+    resource: "@AppBundle/Resources/config/routes/admin/band.yml"
+    prefix: /

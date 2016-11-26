@@ -27,7 +27,7 @@ class AdminController extends Controller
             ->getRepository('AppBundle:Album')
             ->findAll();
 
-		return $this->render('AppBundle:Admin:Index.html.twig',[
+		return $this->render('AppBundle:Admin:adminIndex.html.twig',[
 				'band' => $band,
 				'categ' => $categ,
 				'event' => $event,

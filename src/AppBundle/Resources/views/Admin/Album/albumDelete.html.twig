@@ -1,0 +1,25 @@
+{% extends "AppBundle:Admin:adminLayout.html.twig" %}
+
+{% block albumDelete %}
+
+	<h3>Band delete</h3>
+
+
+	<ul> supprimer la Categorie: 
+		<li>{{album.id}}</li>
+		<li>{{album.name}}</li>
+	</ul>
+
+	<form action="{{ path('Album_delete', {'id': album.id}) }}" method="post">
+
+    <a href="{{ path('Admin') }}"> Retour à l'admin </a> <br>
+
+    <input type="submit" value="Supprimer"/>
+
+    {# Ceci va générer le champ CSRF #}
+
+    {{ form_end(albumForm) }}
+
+  </form>
+
+	{% endblock %}

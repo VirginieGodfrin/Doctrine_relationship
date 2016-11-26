@@ -13,6 +13,17 @@ use AppBundle\Form\CategoryType;
 
 class CategoryController extends Controller
 {
+    public function indexAction(){
+
+        $categ = $this->getDoctrine()
+            ->getRepository('AppBundle:Category')
+            ->findAll();
+
+        return $this->render('AppBundle:Admin\Categ:categIndex.html.twig',[
+                'categ' => $categ,
+            ]);
+
+    }
 	
 	public function newAction(){
 
@@ -37,12 +48,6 @@ class CategoryController extends Controller
 
 		$categ = new Category();
 
-		/*$bandForm = $this->createFormBuilder($band)
-        ->add('name', TextType::class)
-        ->add('tags')
-        ->add('categories')
-        ->add('save', SubmitType::class, array('label' => 'Create Band'))
-        ->getForm();*/
 
 		$categForm = $this->createForm(CategoryType::class, $categ);
 
@@ -60,15 +65,61 @@ class CategoryController extends Controller
 	    	}
 		
 		
-		return $this->render('AppBundle:Admin:categAdd.html.twig',[
+		return $this->render('AppBundle:Admin\Categ:categAdd.html.twig',[
 				'categForm' => $categForm->createView()
 			]);
 
 	}
 
-	public function editAction(band $band){
-           
-		return $this->render('AppBundle:Admin:bandEdit.html.twig');
+	public function editAction(Request $request, Category $categ){
 
-	}
+        $formCateg = $this->createForm(CategoryType::class, $categ);
+
+        $formCateg->handleRequest($request);
+
+        if($formCateg->isSubmitted() && $formCateg->isValid() ){
+            
+            $categ = $formCateg->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($categ);
+            $em->flush();
+
+            return $this->redirectToRoute('Admin');
+        }
+
+        return $this->render('AppBundle:Admin\Categ:categEdit.html.twig',[
+            'formCateg'=>$formCateg->createView()
+            ]
+        );
+    }
+
+    public function deleteAction(Request $request, Category $categ){
+
+    	$em = $this->getDoctrine()->getManager();
+
+    	$categId = $categ->getId(); 
+
+    	$categ = $em->getRepository('AppBundle:Category')
+                    ->find($categId);
+
+        $formCateg = $this->get('form.factory')->create();
+
+        $formCateg->handleRequest($request);
+
+        if($formCateg->isSubmitted()){
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($categ);
+            $em->flush();
+
+            return $this->redirectToRoute('Admin');
+        }
+
+		return $this->render('AppBundle:Admin\Categ:categDelete.html.twig',[
+        	'categ' => $categ,
+            'formCateg' => $formCateg->createView()
+            ]
+        );
+    }
 }

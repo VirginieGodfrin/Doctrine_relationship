@@ -18,6 +18,17 @@ use AppBundle\Entity\User;
 
 class EventController extends Controller
 {
+	public function indexAction(){
+
+        $event = $this->getDoctrine()
+            ->getRepository('AppBundle:Event')
+            ->findAll();
+
+		return $this->render('AppBundle:Admin\Event:eventIndex.html.twig',[
+				'event' => $event
+			]);
+
+	}
 	public function newAction(){
 
 		$tags = new Tags();
@@ -87,22 +98,67 @@ class EventController extends Controller
 	    	}
 		}
 		
-		return $this->render('AppBundle:Admin:eventAdd.html.twig',[
+		return $this->render('AppBundle:Admin\Event:eventAdd.html.twig',[
 				'eventForm' => $eventForm->createView()
 			]);
 
 	}
 
 
-	public function editAction(){
-           
-		return $this->render('AppBundle:Admin:eventEdit.html.twig');
+	public function editAction(Request $request, Event $event){
 
-	}
+        $eventForm = $this->createForm(EventType::class, $event);
 
-	/*public function addAction(){
-           
-		return $this->render('AppBundle:Admin:index.html.twig');
+        if($request->isMethod('POST')){
 
-	}*/
+	        $eventForm->handleRequest($request);
+
+	        if($eventForm->isSubmitted() && $eventForm->isValid() ){
+	            
+	            $event = $eventForm->getData();
+
+	            $em = $this->getDoctrine()->getManager();
+
+	            $em->flush();
+
+	            return $this->redirectToRoute('Admin');
+	        }
+	    }
+
+        return $this->render('AppBundle:Admin\Event:eventEdit.html.twig',[
+            'eventForm'=>$eventForm->createView()
+            ]
+        );
+    }
+
+    public function deleteAction(Request $request, Event $event){
+
+    	$em = $this->getDoctrine()->getManager();
+
+    	$eventId = $event->getId(); 
+
+    	$event = $em->getRepository('AppBundle:Event')
+    				->find($eventId);
+
+        $eventForm = $this->get('form.factory')->create();
+
+        if($request->isMethod('POST')){
+
+	        $eventForm->handleRequest($request);
+
+	        if($eventForm->isSubmitted()){
+	        	$em = $this->getDoctrine()->getManager();
+	            $em->remove($event);
+	            $em->flush();
+
+	            return $this->redirectToRoute('Admin');
+	        }
+	    }
+
+		return $this->render('AppBundle:Admin\Event:eventDelete.html.twig',[
+        	'event' => $event,
+            'eventForm' => $eventForm->createView()
+            ]
+        );
+    }
 }

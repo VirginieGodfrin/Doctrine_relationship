@@ -1,0 +1,37 @@
+{% extends "AppBundle:Admin:adminLayout.html.twig" %}
+
+{% block bandIndex %}
+
+<ul><h3>Bands</h3>
+		<div>
+			<span><a href="{{ path('Band_new') }}">NEW</a></span> //
+			<span><a href="{{ path('Band_add') }}">ADD</a></span>
+		</div>
+		<div>----------------------------------------------------</div>
+		{% for b in band %}
+			<li>{{b.id}} // {{b.name}} 
+				<div> tags: 
+					{% for t in b.tags %}
+						{{t.name}} //
+					{% endfor %}
+				</div>
+				<div> categories: 
+					{% for c in b.categories %}
+						{{c.name}} //
+					{% endfor %}
+				</div>
+				<div> event: 
+					{% for e in b.events %}
+						{{e.name}} //
+					{% endfor %}
+				</div>
+				
+				<div>
+					<span><a href="{{ path('Band_edit',{'id':b.id}) }}">EDIT</a></span> // 
+					<span><a href="{{ path('Band_delete',{'id':b.id}) }}">DELETE</a></span>
+				</div>
+            </li>
+		{% endfor %}
+	</ul>
+	
+	{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "AppBundle:Admin:adminLayout.html.twig" %}
+
+{% block eventIndex %}
+	
+	<ul><h3>Events</h3> 
+		<div>
+			<span><a href="{{ path('Event_new') }}">NEW</a></span> // 
+			<span><a href="{{ path('Event_add') }}">ADD</a></span>
+		</div>
+		<div>----------------------------------------------------</div>
+		{% for e in event %}
+			<li>{{e.id}} // {{e.name}} // {{e.concertHall.name}} // {{e.stratTime|date('d-m-Y')}} // 
+				{{e.stratTime|date('H:i:s a')}} // {{e.endTime|date('d-m-Y H:i:s a')}}
+				<div>Bands: 
+					{% for b in e.bands %}
+						{{b.name}} //
+					{% endfor %}
+				</div>
+				<div>Users: 
+					{% for u in e.users %}
+						{{u.name}} //
+					{% endfor %}
+				</div>
+				<div>
+					<span><a href="{{ path('Event_edit',{'id':e.id}) }}">EDIT</a></span> //
+					<span><a href="{{ path('Event_delete',{'id':e.id}) }}">DELETE</a></span>
+
+				</div>
+            </li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}

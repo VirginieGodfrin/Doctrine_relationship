@@ -31,7 +31,7 @@ class Category
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Band", inversedBy="categories")
+     * @ORM\ManyToOne(targetEntity="Band", inversedBy="categories", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $band;
@@ -44,6 +44,12 @@ class Category
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+         $this->id = $id;
+         return $this;
     }
 
     /**
@@ -74,8 +80,6 @@ class Category
         return $this->getName();
     }
     
-    
-
     /**
      * Set band
      *
