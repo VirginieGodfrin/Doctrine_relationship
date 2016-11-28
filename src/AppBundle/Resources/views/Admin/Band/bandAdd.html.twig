@@ -4,9 +4,6 @@
 
 	<h3>Band add</h3>
 
-	{{ form_start(bandForm) }}
-	{{ form_widget(bandForm) }}
-	<input type="submit" value="Ajouter un band"/>
-	{{ form_end(bandForm) }}
+	{{ include('AppBundle:Admin/Band:bandForm.html.twig') }}
 
 	{% endblock %}

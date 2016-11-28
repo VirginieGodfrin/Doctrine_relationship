@@ -61,6 +61,8 @@ class CategoryController extends Controller
 	        	$em->persist($categ);
 				$em->flush();
 
+                $this->addFlash('success', 'Categorie ajoutée !');
+
 	        	return $this->redirectToRoute('Categ_index');
 	    	}
 		
@@ -84,6 +86,8 @@ class CategoryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($categ);
             $em->flush();
+
+            $this->addFlash('success', 'Categorie modifiée !');
 
             return $this->redirectToRoute('Categ_index');
         }
@@ -112,6 +116,8 @@ class CategoryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($categ);
             $em->flush();
+
+            $this->addFlash('success', 'Categorie suprimée !');
 
             return $this->redirectToRoute('Categ_index');
         }

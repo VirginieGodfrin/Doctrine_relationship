@@ -7,8 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class AlbumType extends AbstractType
 {
@@ -20,9 +19,14 @@ class AlbumType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('description', TextType::class)
-            ->add('isPublish', CheckboxType::class, 
-                array('required' => false))
-            ->add('band')
+            ->add('isPublish', ChoiceType::class, 
+                array('choices' => [
+                    'Yes' => true,
+                    'No' => false,
+                    ]))
+            ->add('band', null,[
+                    'placeholder' => 'choisi un band !'
+                ])
             ;
     }
     

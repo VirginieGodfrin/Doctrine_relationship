@@ -70,6 +70,8 @@ class BandController extends Controller
 	        	$em->persist($band);
 				$em->flush();
 
+				$this->addFlash('success', 'Band ajouté !');
+
 	        	return $this->redirectToRoute('Band_index');
 	    	}
 		
@@ -93,6 +95,8 @@ class BandController extends Controller
             $band = $bandForm->getData();
 
             $em->flush();
+
+            $this->addFlash('success', 'Band modifié !');
 
             return $this->redirectToRoute('Band_index');
         }
@@ -121,6 +125,8 @@ class BandController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($band);
             $em->flush();
+
+            $this->addFlash('success', 'Band suprimé !');
 
             return $this->redirectToRoute('Band_index');
         }

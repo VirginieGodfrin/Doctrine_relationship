@@ -8,6 +8,8 @@ use AppBundle\Entity\Band;
 use AppBundle\Entity\ConcertHall;
 use AppBundle\Entity\User;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Event
  *
@@ -27,7 +29,7 @@ class Event
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -35,6 +37,7 @@ class Event
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
@@ -42,25 +45,29 @@ class Event
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="stratTime", type="datetimetz")
+     * @Assert\DateTime()
+     * @ORM\Column(name="stratTime", type="datetime")
      */
     private $stratTime;
 
     /**
      * @var \DateTime
      *
+     * @Assert\DateTime()
      * @ORM\Column(name="endTime", type="datetimetz")
      */
     private $endTime;
 
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToMany(targetEntity="Band", inversedBy="events", cascade={"persist"})
      * @ORM\joinTable(name="event_band"))
      */
     private $bands;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="ConcertHall", inversedBy="events")
      */
     private $concertHall;
@@ -77,6 +84,9 @@ class Event
 
         $this->bands = new ArrayCollection();
         $this->users = new ArrayCollection();
+
+        $this->stratTime = new \DateTime();
+        $this->endTime = new\DateTime();
     }
 
 

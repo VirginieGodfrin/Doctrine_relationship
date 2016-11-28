@@ -4,9 +4,6 @@
 
 	<h3>Event Edit</h3>
 	
-	{{ form_start(eventForm) }}
-	{{ form_widget(eventForm) }}
-	<input type="submit" value="Modifier l'évent"/>
-	{{ form_end(eventForm) }}
+	{{ include('AppBundle:Admin/Event:eventForm.html.twig') }}
 
 	{% endblock %}

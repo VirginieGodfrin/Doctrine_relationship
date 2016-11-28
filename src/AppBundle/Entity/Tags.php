@@ -33,6 +33,7 @@ class Tags
     private $name;
 
     /**
+     *
      * @ORM\ManyToMany(targetEntity="Band", mappedBy="tags")
      * 
      */

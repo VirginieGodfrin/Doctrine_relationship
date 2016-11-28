@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Band;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Album
  *
@@ -24,8 +26,9 @@ class Album
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255)
+     * 
      */
     private $name;
 
@@ -33,6 +36,7 @@ class Album
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $description;
 
@@ -40,12 +44,14 @@ class Album
      * @var bool
      *
      * @ORM\Column(name="isPublish", type="boolean")
+     * @Assert\NotBlank()
      */
     private $isPublish = true;
 
     /**
      * @ORM\ManyToOne(targetEntity="Band")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $band;
 

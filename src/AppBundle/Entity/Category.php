@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Band;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category
@@ -25,12 +26,14 @@ class Category
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Band", inversedBy="categories", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */

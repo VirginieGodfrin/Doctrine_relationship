@@ -8,6 +8,8 @@ use AppBundle\Entity\Tags;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Event;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Band
  *
@@ -27,18 +29,20 @@ class Band
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\OneToMany(targetEntity="Category", mappedBy="band",)
      */
 
     private $categories;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToMany(targetEntity="Tags", inversedBy="bands", cascade={"persist"})
      * @ORM\joinTable(name="band_tags")
      */

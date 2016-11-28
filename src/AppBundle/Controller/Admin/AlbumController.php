@@ -68,6 +68,8 @@ class AlbumController extends Controller
 	        	$em->persist($album);
 				$em->flush();
 
+				$this->addFlash('success', 'Album ajouté !');
+
 	        	return $this->redirectToRoute('Album_index');
 	    	}
 		}
@@ -91,6 +93,8 @@ class AlbumController extends Controller
             $album = $albumForm->getData();
 
             $em->flush();
+
+            $this->addFlash('success', 'Album modifié !');
 
             return $this->redirectToRoute('Album_index');
         }
@@ -119,6 +123,8 @@ class AlbumController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($album);
             $em->flush();
+
+            $this->addFlash('success', 'Album supprimé !');
 
             return $this->redirectToRoute('Album_index');
         }

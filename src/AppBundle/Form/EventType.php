@@ -19,6 +19,8 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
+use AppBundle\Repository\ConcertHallRepository;
+
 class EventType extends AbstractType
 {
     /**
@@ -31,7 +33,7 @@ class EventType extends AbstractType
         ->add('description', TextType::class)
 
         ->add('stratTime', DateTimeType::class,[
-                'placeholder' => 'Select a value' 
+                'empty_data' => new \DateTime('now')
             ])
         ->add('endTime', DateTimeType::class,[
                 'placeholder' => [
@@ -45,7 +47,13 @@ class EventType extends AbstractType
                     'multiple' => true,
                     'expanded' => true
                 ])
-        ->add('concertHall')      
+        ->add('concertHall',EntityType::class,[
+                'class' => concertHall::class,
+                'placeholder' => 'Choisi une salle de concert ! ',
+                'query_builder' => function(ConcertHallRepository $concertHallRepository){
+                    return $concertHallRepository->alphabeticalQueryBuilder();
+                }
+            ])      
         ;
     }
     

@@ -4,10 +4,7 @@
 
 	<h3>Category add</h3>
 	
-	{{ form_start(formCateg) }}
-	{{ form_widget(formCateg) }}
-	<input type="submit" value="Modifier la categorie"/>
-	{{ form_end(formCateg) }}
+	{{ include('AppBundle:Admin/Categ:categForm.html.twig') }}
 
 	{% endblock %}
 

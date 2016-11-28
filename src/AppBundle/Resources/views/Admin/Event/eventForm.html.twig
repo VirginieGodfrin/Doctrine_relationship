@@ -1,0 +1,10 @@
+
+ {{ form_start(eventForm) }}
+	{{form_row(eventForm.name)}}
+	{{form_row(eventForm.description)}}
+	{{form_row(eventForm.stratTime)}}
+	{{form_row(eventForm.endTime)}}
+	{{form_row(eventForm.bands)}}
+	{{form_row(eventForm.concertHall)}}
+	<input type="submit" value="submit" formnovalidate/>
+{{ form_end(eventForm) }}

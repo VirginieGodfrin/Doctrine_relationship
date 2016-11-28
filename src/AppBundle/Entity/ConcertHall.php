@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\Event;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * ConcertHall
@@ -25,7 +27,8 @@ class ConcertHall
 
     /**
      * @var string
-     *
+     * 
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -33,6 +36,7 @@ class ConcertHall
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="adresse", type="string", length=255)
      */
     private $adresse;
@@ -40,12 +44,17 @@ class ConcertHall
     /**
      * @var string
      *
+     * @Assert\NotBlank()
+     * @Assert\Range(min=0, minMessage="Entrez un numero de maison ")
      * @ORM\Column(name="homeNumber", type="string", length=255)
      */
     private $homeNumber;
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Length(min = 8, max = 20, minMessage = "min_lenght", maxMessage = "max_lenght")
+     * @Assert\Regex(pattern="/^[0-9]*$/", message="number_only") 
      *
      * @ORM\Column(name="phoneNumber", type="string", length=255)
      */
@@ -53,7 +62,10 @@ class ConcertHall
 
     /**
      * @var string
-     *
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;

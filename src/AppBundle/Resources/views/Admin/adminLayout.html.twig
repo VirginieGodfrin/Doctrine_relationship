@@ -7,6 +7,14 @@
 		<li><a href="{{ path('Band_index') }}">Band</a></li>
 		<li><a href="{{ path('Album_index') }}">Album</a></li>
 	</ul>
+	<div>
+		{% for msg in app.session.flashBag.get('success') %}
+			<div>
+				{{msg}}
+			</div>
+
+		{% endfor %}
+	</div>
 	<hr>
 	{% block adminIndex %}
 		{% endblock %}

@@ -94,6 +94,8 @@ class EventController extends Controller
 	        	$em->persist($event);
 				$em->flush();
 
+				$this->addFlash('success', 'Event ajouté !');
+
 	        	return $this->redirectToRoute('Event_index');
 	    	}
 		}
@@ -120,6 +122,8 @@ class EventController extends Controller
 	            $em = $this->getDoctrine()->getManager();
 
 	            $em->flush();
+
+	            $this->addFlash('success', 'Event modifié !');
 
 	            return $this->redirectToRoute('Event_index');
 	        }
@@ -150,6 +154,8 @@ class EventController extends Controller
 	        	$em = $this->getDoctrine()->getManager();
 	            $em->remove($event);
 	            $em->flush();
+
+	            $this->addFlash('success', 'Event suprimé !');
 
 	            return $this->redirectToRoute('Event_index');
 	        }
