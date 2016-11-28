@@ -25,8 +25,6 @@ class BandType extends AbstractType
                     'multiple' => true,
                     'expanded' => true
                 ])
-
-            ->add('save', SubmitType::class, array('label' => 'Band'))
         ;
     }
     

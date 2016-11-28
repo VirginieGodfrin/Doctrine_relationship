@@ -23,7 +23,6 @@ class AlbumType extends AbstractType
             ->add('isPublish', CheckboxType::class, 
                 array('required' => false))
             ->add('band')
-            ->add('save', SubmitType::class);
             ;
     }
     

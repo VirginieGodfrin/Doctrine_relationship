@@ -70,7 +70,7 @@ class BandController extends Controller
 	        	$em->persist($band);
 				$em->flush();
 
-	        	return $this->redirectToRoute('Admin');
+	        	return $this->redirectToRoute('Band_index');
 	    	}
 		
 		
@@ -94,7 +94,7 @@ class BandController extends Controller
 
             $em->flush();
 
-            return $this->redirectToRoute('Admin');
+            return $this->redirectToRoute('Band_index');
         }
 
         return $this->render('AppBundle:Admin\Band:bandEdit.html.twig',[
@@ -122,7 +122,7 @@ class BandController extends Controller
             $em->remove($band);
             $em->flush();
 
-            return $this->redirectToRoute('Admin');
+            return $this->redirectToRoute('Band_index');
         }
 
 		return $this->render('AppBundle:Admin\Band:bandDelete.html.twig',[

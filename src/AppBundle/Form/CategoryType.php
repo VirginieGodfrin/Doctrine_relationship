@@ -20,8 +20,7 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('band')
-            ->add('save', SubmitType::class, array('label' => 'Create Category'))       
+            ->add('band')      
             ;
     }
     

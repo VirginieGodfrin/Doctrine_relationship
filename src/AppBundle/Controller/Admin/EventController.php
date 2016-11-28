@@ -94,7 +94,7 @@ class EventController extends Controller
 	        	$em->persist($event);
 				$em->flush();
 
-	        	return $this->redirectToRoute('Admin');
+	        	return $this->redirectToRoute('Event_index');
 	    	}
 		}
 		
@@ -121,7 +121,7 @@ class EventController extends Controller
 
 	            $em->flush();
 
-	            return $this->redirectToRoute('Admin');
+	            return $this->redirectToRoute('Event_index');
 	        }
 	    }
 
@@ -151,7 +151,7 @@ class EventController extends Controller
 	            $em->remove($event);
 	            $em->flush();
 
-	            return $this->redirectToRoute('Admin');
+	            return $this->redirectToRoute('Event_index');
 	        }
 	    }
 

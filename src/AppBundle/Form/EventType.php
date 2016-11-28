@@ -45,8 +45,7 @@ class EventType extends AbstractType
                     'multiple' => true,
                     'expanded' => true
                 ])
-        ->add('concertHall')
-        ->add('save', SubmitType::class);       
+        ->add('concertHall')      
         ;
     }
     

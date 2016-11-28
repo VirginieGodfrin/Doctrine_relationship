@@ -61,7 +61,7 @@ class CategoryController extends Controller
 	        	$em->persist($categ);
 				$em->flush();
 
-	        	return $this->redirectToRoute('Admin');
+	        	return $this->redirectToRoute('Categ_index');
 	    	}
 		
 		
@@ -85,7 +85,7 @@ class CategoryController extends Controller
             $em->persist($categ);
             $em->flush();
 
-            return $this->redirectToRoute('Admin');
+            return $this->redirectToRoute('Categ_index');
         }
 
         return $this->render('AppBundle:Admin\Categ:categEdit.html.twig',[
@@ -113,7 +113,7 @@ class CategoryController extends Controller
             $em->remove($categ);
             $em->flush();
 
-            return $this->redirectToRoute('Admin');
+            return $this->redirectToRoute('Categ_index');
         }
 
 		return $this->render('AppBundle:Admin\Categ:categDelete.html.twig',[
