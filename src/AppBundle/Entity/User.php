@@ -6,13 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\Event;
 
+use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -49,6 +52,25 @@ class User
      * @ORM\joinTable(name="user_event"))
      */
     private $events;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userName", type="string", length=255)
+     */
+    private $userName;
+
+
+    private $roles;
+
+    private $password;
+
+    private $salt;
+
+    private $eraseCredentials;
+
+
 
 
     public function __construct(){
@@ -175,5 +197,22 @@ class User
     public function getEvents()
     {
         return $this->events;
+    }
+
+    public function getUsername() {
+        return $this->email();
+    }
+
+    public function getRoles() {
+        return ['ROLE_USER'];
+    }
+
+    public function getPassword() {
+    }
+
+    public function getSalt() {
+    }
+
+    public function eraseCredentials() {
     }
 }

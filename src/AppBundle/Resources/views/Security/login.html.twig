@@ -1,0 +1,15 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block login %}
+	<h2>Login</h2>
+
+	{% if error %}
+    	<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+
+	{{ form_start(form) }}
+		{{form_row(form.username)}}
+		{{form_row(form.password)}}
+		<input type="submit" value="submit" />
+	{{ form_end(form) }}
+
+	{% endblock %}

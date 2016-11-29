@@ -19,3 +19,8 @@ User:
 Admin:
     resource: "@AppBundle/Resources/config/routes/admin/admin.yml"
     prefix: /
+
+Login:
+    path:    /login
+    defaults:
+        _controller: AppBundle:Security:login

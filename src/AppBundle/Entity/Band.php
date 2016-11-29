@@ -49,6 +49,7 @@ class Band
     private $tags;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToMany(targetEntity="Event", mappedBy="bands")
      */
     private $events;

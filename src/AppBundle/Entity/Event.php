@@ -54,7 +54,7 @@ class Event
      * @var \DateTime
      *
      * @Assert\DateTime()
-     * @ORM\Column(name="endTime", type="datetimetz")
+     * @ORM\Column(name="endTime", type="datetime")
      */
     private $endTime;
 
