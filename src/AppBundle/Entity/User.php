@@ -14,8 +14,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({ "artiste" = "Artiste", "label" = "Label"})
  */
-class User implements UserInterface
+abstract class User implements UserInterface
 {
     /**
      * @var int
@@ -62,7 +65,7 @@ class User implements UserInterface
     private $userName;
 
 
-    private $roles;
+    /*private $roles;*/
 
     private $password;
 
@@ -200,12 +203,12 @@ class User implements UserInterface
     }
 
     public function getUsername() {
-        return $this->email();
+        return $this->email;
     }
 
-    public function getRoles() {
+    /*public function getRoles() {
         return ['ROLE_USER'];
-    }
+    }*/
 
     public function getPassword() {
     }

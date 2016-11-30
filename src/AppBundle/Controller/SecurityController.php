@@ -11,7 +11,7 @@ class SecurityController extends Controller{
 	public function loginAction(Request $request){
 
 		$authenticationUtils = $this->get('security.authentication_utils');
-
+		
 	    // get the login error if there is one
 	    $error = $authenticationUtils->getLastAuthenticationError();
 
@@ -21,11 +21,15 @@ class SecurityController extends Controller{
 	    $form = $this->createForm(LoginForm::class,[
 	    	'username' => $lastUsername,
 	    	]);
-
+	    dump($lastUsername);
 	    return $this->render('AppBundle:Security:login.html.twig', array(
 	        'form' => $form->createView(),
 	        'error'=> $error,
 	    ));
 
+	}
+
+	public function logoutAction(Request $request){
+		throw new \Exception('this should not be reached!');
 	}
 }

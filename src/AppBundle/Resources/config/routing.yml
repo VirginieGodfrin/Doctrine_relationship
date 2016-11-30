@@ -1,6 +1,6 @@
 
 Home:
-    path:    /home
+    path:    /
     defaults:
         _controller: AppBundle:Home:index
 
@@ -24,3 +24,8 @@ Login:
     path:    /login
     defaults:
         _controller: AppBundle:Security:login
+
+Logout:
+    path:    /logout
+    defaults:
+        _controller: AppBundle:Security:logout

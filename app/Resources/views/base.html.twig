@@ -12,7 +12,12 @@
                 <li><a href="{{path('Album') }}"> Albums </a></li>
                 <li><a href="{{path('Event') }}"> Events </a></li>
                 <li><a href="{{path('Admin') }}"> Admin </a></li>
+                
+                {% if is_granted('ROLE_USER') %}
+                <li><a href="{{path('Logout') }}"> Logout </a></li>
+                {% else %}
                 <li><a href="{{path('Login') }}"> Login </a></li>
+                {% endif %}
             </ul>
             <hr>
         </header>
