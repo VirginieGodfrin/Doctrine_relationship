@@ -69,6 +69,8 @@ abstract class User implements UserInterface
 
     private $password;
 
+    private $plainPassword;
+
     private $salt;
 
     private $eraseCredentials;
@@ -211,11 +213,32 @@ abstract class User implements UserInterface
     }*/
 
     public function getPassword() {
+
+        return $this->password;
+
+    }
+
+    public function setPassword() {
+
+        $this->password = $password;
+
+    }
+
+    public function getPlainPassword() {
+        return $this->plainPassword; 
+    }
+
+    public function setPlainPassword($plainPassword) {
+        $this->plainPassword = $plainPassword;
+        //avant de mettre à jour le mot de passe, doctrine va d'abord utiliser
+        // plainPassword 
+        $this->password = null; 
     }
 
     public function getSalt() {
     }
 
     public function eraseCredentials() {
+        $this->plainPassword = null;
     }
 }

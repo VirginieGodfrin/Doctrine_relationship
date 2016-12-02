@@ -42,11 +42,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
 
 		$data = $form->getData();
 		
-
 		$request->getSession()->set(
 			Security::LAST_USERNAME,
 			$data['username']
 			);
+
 		return $data;
 
  	}
