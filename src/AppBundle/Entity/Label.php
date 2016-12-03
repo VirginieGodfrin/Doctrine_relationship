@@ -46,6 +46,6 @@ class Label extends User
     }
 
     public function getRoles() {
-        return ['ROLE_USER'];
+        return ['ROLE_ADMIN'];
     }
 }

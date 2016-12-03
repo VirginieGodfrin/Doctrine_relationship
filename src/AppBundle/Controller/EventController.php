@@ -5,9 +5,13 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class EventController extends Controller
 {
+	/**
+	 * @Security("is_granted('ROLE_USER')")
+	 */
 	public function indexAction(){
 
 		$em = $this->getDoctrine()->getManager();

@@ -67,8 +67,17 @@ abstract class User implements UserInterface
 
     /*private $roles;*/
 
+    /**
+     * The encoded password
+     *
+     * @ORM\Column(type="string")
+     */
     private $password;
 
+    /**
+     *
+     * @var string
+     */
     private $plainPassword;
 
     private $salt;

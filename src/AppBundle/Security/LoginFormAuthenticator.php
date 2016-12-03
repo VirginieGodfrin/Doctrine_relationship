@@ -19,12 +19,15 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
 	private $formFactory;
 	private $em;
 	private $router;
+	private $passwordEncoder;
 
-	public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router){
+
+	public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router, UserPasswordEncoder $passwordEncoder){
 
 		$this->formFactory = $formFactory;
 		$this->em = $em;
 		$this->router = $router;
+		$this->passwordEncoder = $passwordEncoder;
 
 	}
 
@@ -66,6 +69,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
 			return true;
 		}
 		return false;
+
+		if($this->passwordEncoder->isPasswordValid($user, $password)){
+            return true;
+        }
+        return false;
+
+
 	}
 
 	protected function getLoginUrl(){
