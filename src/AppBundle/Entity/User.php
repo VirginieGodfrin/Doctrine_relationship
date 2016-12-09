@@ -56,17 +56,6 @@ abstract class User implements UserInterface
      */
     private $events;
 
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="userName", type="string", length=255)
-     */
-    private $userName;
-
-
-    /*private $roles;*/
-
     /**
      * The encoded password
      *
@@ -213,6 +202,12 @@ abstract class User implements UserInterface
         return $this->events;
     }
 
+    public function setUsername() {
+
+        $this->email ;
+
+    }
+
     public function getUsername() {
         return $this->email;
     }
@@ -227,10 +222,9 @@ abstract class User implements UserInterface
 
     }
 
-    public function setPassword() {
-
+    public function setPassword($password)
+    {
         $this->password = $password;
-
     }
 
     public function getPlainPassword() {

@@ -18,7 +18,10 @@ class Artiste extends User
 
 	protected $speudo;
 
-	private $roles;
+	/**
+     * @ORM\Column(type="json_array")
+     */
+    private $roles = [];
 
 	/**
      * Set name
@@ -44,7 +47,20 @@ class Artiste extends User
         return $this->speudo;
     }
 
+    public function setRoles(array $roles) {
+
+        $this->roles = $roles;
+
+    }
+
     public function getRoles() {
-        return ['ROLE_USER'];
+
+        /*return ['ROLE_USER'];*/
+        $roles = $this->roles;
+        if (!in_array('ROLE_USER', $roles)) { 
+            $roles[] = 'ROLE_USER';
+        }
+        return $roles;
+
     }
 }

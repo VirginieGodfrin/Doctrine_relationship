@@ -19,7 +19,10 @@ class Label extends User
 
 	protected $titre;
 
-	private $roles;
+    /**
+     * @ORM\Column(type="json_array")
+     */
+	private $roles = [];
 
 	/**
      * Set name
@@ -45,7 +48,17 @@ class Label extends User
         return $this->titre;
     }
 
+    public function setRoles(array $roles) {
+        $this->roles = $roles; 
+    }
+
     public function getRoles() {
-        return ['ROLE_ADMIN'];
+
+        $roles = $this->roles;
+        if (!in_array('ROLE_ADMIN', $roles)) { 
+            $roles[] = 'ROLE_ADMIN';
+        }
+        return $roles;
+        
     }
 }

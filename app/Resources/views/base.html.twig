@@ -12,6 +12,7 @@
                 <li><a href="{{path('Album') }}"> Albums </a></li>
                 <li><a href="{{path('Event') }}"> Events </a></li>
                 <li><a href="{{path('Admin') }}"> Admin </a></li>
+                <li><a href="{{path('user_register') }}"> Register </a></li>
                 
                 {% if is_granted('ROLE_ADMIN') %}
                 <li><a href="{{path('Logout') }}"> Logout </a></li>
@@ -19,7 +20,22 @@
                 <li><a href="{{path('Login') }}"> Login </a></li>
                 {% endif %}
             </ul>
-            <hr>
+            <div>
+                {% for msg in app.session.flashBag.get('success') %}
+                    <div>
+                        {{msg}}
+                    </div>
+                {% endfor %}
+            </div>
+            {% if is_granted('ROLE_USER') %}
+                <hr>
+                <h3>
+                la session de 
+                {{ app.user ? app.user.firstname}} {{ app.user ? app.user.name}}!
+                </h3>
+                <hr>
+            {% endif %}
+            
         </header>
 
         {% block body %}{% endblock %}

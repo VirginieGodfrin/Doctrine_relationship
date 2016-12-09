@@ -68,7 +68,10 @@ class AlbumController extends Controller
 	        	$em->persist($album);
 				$em->flush();
 
-				$this->addFlash('success', 'Album ajouté !');
+				$this->addFlash(
+					'success', 
+					sprintf('Album created by you: %s!', $this->getUser()->getFirstname())
+				);
 
 	        	return $this->redirectToRoute('Album_index');
 	    	}

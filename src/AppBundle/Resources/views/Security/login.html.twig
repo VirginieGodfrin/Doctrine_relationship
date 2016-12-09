@@ -10,6 +10,8 @@
 		{{form_row(form.username)}}
 		{{form_row(form.password)}}
 		<input type="submit" value="submit" />
+		&nbsp;
+		<a href="{{ path('user_register') }}">I already have an account</a>
 	{{ form_end(form) }}
 
 	{% endblock %}
